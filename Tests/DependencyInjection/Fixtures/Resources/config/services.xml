@@ -1,0 +1,18 @@
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="openclassrooms.tests.util.entity_manager_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy</parameter>
+        <parameter key="openclassrooms.tests.use_cases.use_case_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\UseCaseStub</parameter>
+        <parameter key="openclassrooms.tests.use_cases.transaction_use_case_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub</parameter>
+    </parameters>
+    <services>
+        <service id="openclassrooms.tests.util.entity_manager_stub" class="%openclassrooms.tests.util.entity_manager_stub.class%"/>
+        <!--USE CASES-->
+        <service id="openclassrooms.tests.use_cases.use_case_stub" class="%openclassrooms.tests.use_cases.use_case_stub.class%"/>
+        <service id="openclassrooms.tests.use_cases.use_case_stub_tagged" class="%openclassrooms.tests.use_cases.use_case_stub.class%">
+            <tag name="openclassrooms.use_case"/>
+        </service>
+        <service id="openclassrooms.tests.use_cases.transaction_use_case_stub" class="%openclassrooms.tests.use_cases.transaction_use_case_stub.class%">
+            <tag name="openclassrooms.use_case" entity_manager="openclassrooms.tests.util.entity_manager_stub"/>
+        </service>
+    </services>
+</container>

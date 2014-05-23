@@ -1,0 +1,43 @@
+{
+    "name": "openclassrooms/clean-architecture-bundle",
+    "description": "Symfony2 Bundle for OpenClassrooms CleanArchitecture",
+    "type": "symfony-bundle",
+    "keywords": ["design"],
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Romain Kuzniak",
+            "email": "romain.kuzniak@openclassrooms.com"
+        },
+        {
+            "name": "OpenClassrooms",
+            "email": "technique@openclassrooms.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "OpenClassrooms\\Bundle\\CleanArchitectureBundle\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "openclassrooms/clean-architecture": "1.0.*@dev",
+        "symfony/dependency-injection": "~2.1",
+        "symfony/config": "~2.1",
+        "symfony/http-kernel": "~2.1",
+        "symfony/security": "~2.1",
+        "openclassrooms/cache": "1.0.*@dev",
+        "openclassrooms/cache-bundle": "1.0.*@dev",
+        "doctrine/orm": "~2",
+        "symfony/event-dispatcher": "~2.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
