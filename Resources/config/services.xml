@@ -1,10 +1,12 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="openclassrooms.clean_architecture.use_case_proxy_builder.class">OpenClassrooms\CleanArchitecture\Application\Services\Proxy\UseCases\Impl\UseCaseProxyBuilderImpl</parameter>
+        <parameter key="openclassrooms.clean_architecture.security_factory.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Security\Impl\SecurityFactoryImpl</parameter>
         <parameter key="openclassrooms.clean_architecture.transaction_factory.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Transaction\Impl\TransactionFactoryImpl</parameter>
     </parameters>
     <services>
         <service id="openclassrooms.clean_architecture.use_case_proxy_builder" class="%openclassrooms.clean_architecture.use_case_proxy_builder.class%"/>
+        <service id="openclassrooms.clean_architecture.security_factory" class="%openclassrooms.clean_architecture.security_factory.class%"/>
         <service id="openclassrooms.clean_architecture.transaction_factory" class="%openclassrooms.clean_architecture.transaction_factory.class%"/>
     </services>
 </container>

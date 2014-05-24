@@ -4,6 +4,7 @@ namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjectio
 
 use OpenClassrooms\CleanArchitecture\BusinessRules\Requestors\UseCaseRequest;
 use OpenClassrooms\CleanArchitecture\Application\Annotations\Transaction;
+use OpenClassrooms\CleanArchitecture\BusinessRules\Responders\UseCaseResponse;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
@@ -13,7 +14,7 @@ class TransactionUseCaseStub extends UseCaseStub
     /**
      * @transaction
      *
-     * @return \OpenClassrooms\CleanArchitecture\BusinessRules\Responders\UseCaseResponse
+     * @return UseCaseResponse
      */
     public function execute(UseCaseRequest $useCaseRequest)
     {

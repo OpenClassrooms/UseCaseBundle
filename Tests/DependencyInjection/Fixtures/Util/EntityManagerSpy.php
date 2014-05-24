@@ -12,20 +12,23 @@ class EntityManagerSpy extends EntityManager
     /**
      * @var bool
      */
-    public $transactionBegin = false;
+    public static $transactionBegin = false;
 
     /**
      * @var bool
      */
-    public $committed = false;
+    public static $committed = false;
 
     /**
      * @var bool
      */
-    public $rollBacked = false;
+    public static $rollBacked = false;
 
     public function __construct()
     {
+        self::$transactionBegin = false;
+        self::$committed = false;
+        self::$rollBacked = false;
     }
 
     public function getConnection()
@@ -35,16 +38,16 @@ class EntityManagerSpy extends EntityManager
 
     public function beginTransaction()
     {
-        $this->transactionBegin = true;
+        self::$transactionBegin = true;
     }
 
     public function commit()
     {
-        $this->committed = true;
+        self::$committed = true;
     }
 
     public function rollback()
     {
-        $this->rollBacked = true;
+        self::$rollBacked = true;
     }
 }

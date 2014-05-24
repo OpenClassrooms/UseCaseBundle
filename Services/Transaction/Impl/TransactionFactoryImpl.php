@@ -11,10 +11,10 @@ use OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Transaction\Transacti
 class TransactionFactoryImpl implements TransactionFactory
 {
     /**
-     * @return TransactionEntityManagerAdapter
+     * @return EntityManagerTransactionAdapter
      */
     public function createEntityManagerTransaction(EntityManager $entityManager)
     {
-        return new TransactionEntityManagerAdapter($entityManager);
+        return new EntityManagerTransactionAdapter($entityManager);
     }
 }

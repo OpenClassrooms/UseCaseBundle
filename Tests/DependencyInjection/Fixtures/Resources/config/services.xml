@@ -1,18 +1,55 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
+        <parameter key="openclassrooms.tests.util.security_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\SecuritySpy</parameter>
+        <parameter key="openclassrooms.tests.util.security_context_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\SecurityContextSpy</parameter>
+        <parameter key="openclassrooms.tests.util.cache_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\CacheSpy</parameter>
         <parameter key="openclassrooms.tests.util.entity_manager_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy</parameter>
+        <parameter key="openclassrooms.tests.util.pdo_transaction_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\PDOTransactionSpy</parameter>
+        <parameter key="openclassrooms.tests.util.event_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\EventSpy</parameter>
+        <parameter key="openclassrooms.tests.util.event_dispatcher_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\EventDispatcherStub</parameter>
+        <parameter key="openclassrooms.tests.util.event_factory_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\EventFactorySpy</parameter>
+        <!--USE CASES-->
         <parameter key="openclassrooms.tests.use_cases.use_case_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\UseCaseStub</parameter>
+        <parameter key="openclassrooms.tests.use_cases.security_use_case_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\SecurityUseCaseStub</parameter>
+        <parameter key="openclassrooms.tests.use_cases.cache_use_case_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\CacheUseCaseStub</parameter>
         <parameter key="openclassrooms.tests.use_cases.transaction_use_case_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub</parameter>
+        <parameter key="openclassrooms.tests.use_cases.event_use_case_stub.class">OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub</parameter>
     </parameters>
     <services>
+        <service id="annotation_reader" class="Doctrine\Common\Annotations\AnnotationReader"/>
+        <service id="openclassrooms.tests.util.security_stub" class="%openclassrooms.tests.util.security_stub.class%"/>
+        <service id="openclassrooms.tests.util.security_context_stub" class="%openclassrooms.tests.util.security_context_stub.class%"/>
+        <service id="openclassrooms.tests.util.cache_stub" class="%openclassrooms.tests.util.cache_stub.class%"/>
         <service id="openclassrooms.tests.util.entity_manager_stub" class="%openclassrooms.tests.util.entity_manager_stub.class%"/>
+        <service id="openclassrooms.tests.util.pdo_transaction_stub" class="%openclassrooms.tests.util.pdo_transaction_stub.class%"/>
+        <service id="openclassrooms.tests.util.event_stub" class="%openclassrooms.tests.util.event_stub.class%"/>
+        <service id="openclassrooms.tests.util.event_dispatcher_stub" class="%openclassrooms.tests.util.event_dispatcher_stub.class%"/>
+        <service id="openclassrooms.tests.util.event_factory_stub" class="%openclassrooms.tests.util.event_factory_stub.class%"/>
         <!--USE CASES-->
         <service id="openclassrooms.tests.use_cases.use_case_stub" class="%openclassrooms.tests.use_cases.use_case_stub.class%"/>
         <service id="openclassrooms.tests.use_cases.use_case_stub_tagged" class="%openclassrooms.tests.use_cases.use_case_stub.class%">
             <tag name="openclassrooms.use_case"/>
         </service>
-        <service id="openclassrooms.tests.use_cases.transaction_use_case_stub" class="%openclassrooms.tests.use_cases.transaction_use_case_stub.class%">
-            <tag name="openclassrooms.use_case" entity_manager="openclassrooms.tests.util.entity_manager_stub"/>
+        <service id="openclassrooms.tests.use_cases.security_use_case_stub" class="%openclassrooms.tests.use_cases.security_use_case_stub.class%">
+            <tag name="openclassrooms.use_case" security="openclassrooms.tests.util.security_stub"/>
+        </service>
+        <service id="openclassrooms.tests.use_cases.security_context_security_use_case_stub" class="%openclassrooms.tests.use_cases.security_use_case_stub.class%">
+            <tag name="openclassrooms.use_case" security="openclassrooms.tests.util.security_context_stub"/>
+        </service>
+        <service id="openclassrooms.tests.use_cases.cache_use_case_stub" class="%openclassrooms.tests.use_cases.cache_use_case_stub.class%">
+            <tag name="openclassrooms.use_case" cache="openclassrooms.tests.util.cache_stub"/>
+        </service>
+        <service id="openclassrooms.tests.use_cases.transaction_transaction_use_case_stub" class="%openclassrooms.tests.use_cases.transaction_use_case_stub.class%">
+            <tag name="openclassrooms.use_case" transaction="openclassrooms.tests.util.pdo_transaction_stub"/>
+        </service>
+        <service id="openclassrooms.tests.use_cases.entity_manager_transaction_use_case_stub" class="%openclassrooms.tests.use_cases.transaction_use_case_stub.class%">
+            <tag name="openclassrooms.use_case" transaction="openclassrooms.tests.util.entity_manager_stub"/>
+        </service>
+        <service id="openclassrooms.tests.use_cases.event_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%">
+            <tag name="openclassrooms.use_case" event="openclassrooms.tests.util.event_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>
+        </service>
+        <service id="openclassrooms.tests.use_cases.event_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%">
+            <tag name="openclassrooms.use_case" event="openclassrooms.tests.util.event_dispatcher_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>
         </service>
     </services>
 </container>

@@ -3,16 +3,27 @@
 namespace OpenClassrooms\Bundle\CleanArchitectureBundle\DependencyInjection\Compiler;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\ORM\EntityManagerInterface;
+use OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Security\SecurityFactory;
+use OpenClassrooms\Cache\Cache\Cache;
+use OpenClassrooms\CleanArchitecture\Application\Services\Event\Event;
+use OpenClassrooms\CleanArchitecture\Application\Services\Event\EventFactory;
 use OpenClassrooms\CleanArchitecture\Application\Services\Proxy\UseCases\UseCaseProxyBuilder;
+use OpenClassrooms\CleanArchitecture\Application\Services\Security\Security;
+use OpenClassrooms\CleanArchitecture\Application\Services\Transaction\Transaction;
 use OpenClassrooms\CleanArchitecture\BusinessRules\Requestors\UseCase;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
 class UseCaseProxyPass implements CompilerPassInterface
 {
+    private $reader;
+
     /**
      * @var ContainerBuilder
      */
@@ -32,49 +43,142 @@ class UseCaseProxyPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
+        $this->initContainer($container);
+        $this->initReader();
+        $this->initBuilder();
+        $this->buildUseCaseProxies();
+    }
+
+    private function initContainer(ContainerBuilder $container)
+    {
         $this->container = $container;
-        $taggedServices = $this->container->findTaggedServiceIds('openclassrooms.use_case');
-        if ($container->hasDefinition('annotation_reader')) {
-            $reader = $container->get('annotation_reader');
+    }
+
+    private function initReader()
+    {
+        if ($this->container->hasDefinition('annotation_reader')) {
+            $this->reader = $this->container->get('annotation_reader');
         } else {
-            $reader = new AnnotationReader();
-        }
-        $this->builder = $this->container->get(
-            'openclassrooms.clean_architecture.use_case_proxy_builder'
-        );
-        foreach ($taggedServices as $taggedServiceName => $parameters) {
-            $parameters = $parameters[0];
-            /** @var UseCase $useCase */
-            $useCase = $container->get($taggedServiceName);
-            /** @var UseCaseProxyBuilder $builder */
-            $this->builder
-                ->create($useCase)
-                ->withReader($reader)
-                ->withTransaction($this->buildTransaction($parameters));
-            $container->set($taggedServiceName, $this->builder->build());
+            $this->reader = new AnnotationReader();
         }
     }
 
+    private function initBuilder()
+    {
+        $this->builder = $this->container->get(
+            'openclassrooms.clean_architecture.use_case_proxy_builder'
+        );
+    }
+
+    private function buildUseCaseProxies()
+    {
+        $taggedServices = $this->container->findTaggedServiceIds('openclassrooms.use_case');
+        foreach ($taggedServices as $taggedServiceName => $parameters) {
+            $parameters = $parameters[0];
+            $this->buildUseCaseProxy($taggedServiceName, $parameters);
+        }
+    }
+
+    private function buildUseCaseProxy($taggedServiceName, $parameters)
+    {
+        /** @var UseCase $useCase */
+        $useCase = $this->container->get($taggedServiceName);
+        /** @var UseCaseProxyBuilder $builder */
+        $this->builder
+            ->create($useCase)
+            ->withReader($this->reader)
+            ->withSecurity($this->buildSecurity($parameters))
+            ->withCache($this->buildCache($parameters))
+            ->withTransaction($this->buildTransaction($parameters))
+            ->withEvent($this->buildEvent($parameters))
+            ->withEventFactory($this->buildEventFactory($parameters));
+        $this->container->set($taggedServiceName, $this->builder->build());
+    }
+
     /**
-     * @return mixed
+     * @return Security
      */
-    protected function buildTransaction(array $parameters)
+    private function buildSecurity(array $parameters)
+    {
+        $security = null;
+        if (isset($parameters['security'])) {
+            $security = $this->container->get($parameters['security']);
+            if ($security instanceof SecurityContextInterface) {
+                /** @var SecurityFactory $securityFactory */
+                $securityFactory = $this->container->get(
+                    'openclassrooms.clean_architecture.security_factory'
+                );
+                $security = $securityFactory->createSecurityContextSecurity($security);
+            }
+        }
+
+        return $security;
+    }
+
+    /**
+     * @return Cache
+     */
+    private function buildCache(array $parameters)
+    {
+        $cache = null;
+        if (isset ($parameters['cache'])) {
+            /** @var Cache $cache */
+            $cache = $this->container->get($parameters['cache']);
+        }
+
+        return $cache;
+    }
+
+    /**
+     * @return Transaction
+     */
+    private function buildTransaction(array $parameters)
     {
         $transaction = null;
-        if (isset($parameters['entity_manager'])) {
-            $transactionAdapterFactory = $this->container->get(
-                'openclassrooms.clean_architecture.transaction_factory'
-            );
-            $transaction = $transactionAdapterFactory->createEntityManagerTransaction(
-                $this->container->get($parameters['entity_manager'])
-            );
-
-        }
         if (isset($parameters['transaction'])) {
             $transaction = $this->container->get($parameters['transaction']);
+            if ($transaction instanceof EntityManagerInterface) {
+                $transactionAdapterFactory = $this->container->get(
+                    'openclassrooms.clean_architecture.transaction_factory'
+                );
+                $transaction = $transactionAdapterFactory->createEntityManagerTransaction(
+                    $transaction
+                );
+            }
         }
 
         return $transaction;
     }
 
+    /**
+     * @return Event
+     */
+    private function buildEvent(array $parameters)
+    {
+        $event = null;
+        if (isset($parameters['event'])) {
+            $event = $this->container->get($parameters['event']);
+            if ($event instanceof EventDispatcherInterface) {
+                $eventAdapterFactory = $this->container->get(
+                    'openclassrooms.clean_architecture.event_adapter_factory'
+                );
+                $event = $eventAdapterFactory->createEventDispatcherEvent($event);
+            }
+        }
+
+        return $event;
+    }
+
+    /**
+     * @return EventFactory
+     */
+    private function buildEventFactory(array $parameters)
+    {
+        $eventFactory = null;
+        if (isset($parameters['event-factory'])) {
+            $eventFactory = $this->container->get($parameters['event-factory']);
+        }
+
+        return $eventFactory;
+    }
 }
