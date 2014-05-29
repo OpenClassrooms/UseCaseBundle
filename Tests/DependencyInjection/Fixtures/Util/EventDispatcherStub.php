@@ -7,7 +7,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class EventDispatcherStub implements EventDispatcherInterface
+class EventDispatcherStub //implements EventDispatcherInterface
 {
     
 }
