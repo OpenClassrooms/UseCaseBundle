@@ -1,12 +1,12 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
-use OpenClassrooms\CleanArchitecture\Application\Services\Event\EventFactory;
+use OpenClassrooms\UseCase\Application\Services\Event\EventFactory;
 use
-    OpenClassrooms\CleanArchitecture\Application\Services\Event\Exceptions\InvalidEventNameException;
-use OpenClassrooms\CleanArchitecture\BusinessRules\Requestors\UseCaseRequest;
-use OpenClassrooms\CleanArchitecture\BusinessRules\Responders\UseCaseResponse;
+    OpenClassrooms\UseCase\Application\Services\Event\Exceptions\InvalidEventNameException;
+use OpenClassrooms\UseCase\BusinessRules\Requestors\UseCaseRequest;
+use OpenClassrooms\UseCase\BusinessRules\Responders\UseCaseResponse;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>

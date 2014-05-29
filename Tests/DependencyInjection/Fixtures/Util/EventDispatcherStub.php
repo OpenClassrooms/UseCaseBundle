@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -9,5 +9,5 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class EventDispatcherStub //implements EventDispatcherInterface
 {
-    
+
 }

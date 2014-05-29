@@ -1,8 +1,8 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
-use OpenClassrooms\CleanArchitecture\Application\Services\Event\Event;
+use OpenClassrooms\UseCase\Application\Services\Event\Event;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>

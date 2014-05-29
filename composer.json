@@ -1,6 +1,6 @@
 {
-    "name": "openclassrooms/clean-architecture-bundle",
-    "description": "Symfony2 Bundle for OpenClassrooms CleanArchitecture",
+    "name": "openclassrooms/use-case-bundle",
+    "description": "Symfony2 Bundle for OpenClassrooms UseCase",
     "type": "symfony-bundle",
     "keywords": ["design"],
     "minimum-stability": "stable",
@@ -17,12 +17,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "OpenClassrooms\\Bundle\\CleanArchitectureBundle\\": ""
+            "OpenClassrooms\\Bundle\\UseCaseBundle\\": ""
         }
     },
     "require": {
         "php": ">=5.3.3",
-        "openclassrooms/clean-architecture": "1.0.*@dev",
+        "openclassrooms/use-case": "1.0.*@dev",
         "symfony/dependency-injection": "~2.1",
         "symfony/config": "~2.1",
         "symfony/http-kernel": "~2.1",

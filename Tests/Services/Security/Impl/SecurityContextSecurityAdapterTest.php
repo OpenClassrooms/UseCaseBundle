@@ -1,13 +1,12 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\Services\Security\Impl;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\Services\Security\Impl;
 
+use OpenClassrooms\Bundle\UseCaseBundle\Services\Security\Impl\SecurityContextSecurityAdapter;
 use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Security\Impl\SecurityContextSecurityAdapter;
+    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\NotGrantedSecurityContextStub;
 use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\NotGrantedSecurityContextStub;
-use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\SecurityContextSpy;
+    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecurityContextSpy;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>

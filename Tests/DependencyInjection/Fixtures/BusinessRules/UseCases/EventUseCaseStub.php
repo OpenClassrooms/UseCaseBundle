@@ -1,10 +1,10 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases;
 
-use OpenClassrooms\CleanArchitecture\BusinessRules\Requestors\UseCaseRequest;
-use OpenClassrooms\CleanArchitecture\BusinessRules\Responders\UseCaseResponse;
-use OpenClassrooms\CleanArchitecture\Application\Annotations\Event;
+use OpenClassrooms\UseCase\BusinessRules\Requestors\UseCaseRequest;
+use OpenClassrooms\UseCase\BusinessRules\Responders\UseCaseResponse;
+use OpenClassrooms\UseCase\Application\Annotations\Event;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
@@ -20,5 +20,5 @@ class EventUseCaseStub extends UseCaseStub
     {
         return parent::execute($useCaseRequest);
     }
-    
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\DependencyInjection;
+namespace OpenClassrooms\Bundle\UseCaseBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class OpenClassroomsCleanArchitectureExtension extends Extension
+class OpenClassroomsUseCaseExtension extends Extension
 {
     /**
      * Loads a specific configuration.
@@ -33,6 +33,6 @@ class OpenClassroomsCleanArchitectureExtension extends Extension
      */
     public function getAlias()
     {
-        return 'openclassrooms_clean_architecture';
+        return 'openclassrooms_use_case';
     }
 }

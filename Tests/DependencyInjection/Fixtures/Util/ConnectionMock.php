@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>

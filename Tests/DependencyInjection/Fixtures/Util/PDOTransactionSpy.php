@@ -1,13 +1,13 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
-use OpenClassrooms\CleanArchitecture\Application\Services\Transaction\Impl\TransactionPDOAdapter;
+use OpenClassrooms\UseCase\Application\Services\Transaction\Impl\PDOTransactionAdapter;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class PDOTransactionSpy extends TransactionPDOAdapter
+class PDOTransactionSpy extends PDOTransactionAdapter
 {
 
     /**
@@ -33,22 +33,24 @@ class PDOTransactionSpy extends TransactionPDOAdapter
         self::$rollBacked = false;
     }
 
-
     public function beginTransaction()
     {
         self::$transactionBegin = true;
+
         return parent::beginTransaction();
     }
 
     public function commit()
     {
         self::$committed = true;
+
         return parent::commit();
     }
 
     public function rollback()
     {
         self::$rollBacked = true;
+
         return parent::rollBack();
     }
 }

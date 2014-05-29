@@ -13,7 +13,7 @@
         bootstrap                   = "./Tests/bootstrap.php">
 
     <testsuites>
-        <testsuite name="Clean Architecture Bundle Test Suite">
+        <testsuite name="Use Case Bundle Test Suite">
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>

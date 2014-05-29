@@ -1,8 +1,8 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Security\Impl;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Security\Impl;
 
-use OpenClassrooms\CleanArchitecture\Application\Services\Security\Security;
+use OpenClassrooms\UseCase\Application\Services\Security\Security;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 

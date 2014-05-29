@@ -1,12 +1,11 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\Services\Transaction\Impl;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\Services\Transaction\Impl;
 
+use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\EntityManagerTransactionAdapter;
 use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Transaction\Impl\EntityManagerTransactionAdapter;
-use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy;
-use OpenClassrooms\CleanArchitecture\Application\Services\Transaction\Transaction;
+    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy;
+use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>

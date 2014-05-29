@@ -1,17 +1,17 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\DependencyInjection\Compiler;
+namespace OpenClassrooms\Bundle\UseCaseBundle\DependencyInjection\Compiler;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\EntityManagerInterface;
-use OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Security\SecurityFactory;
+use OpenClassrooms\Bundle\UseCaseBundle\Services\Security\SecurityFactory;
 use OpenClassrooms\Cache\Cache\Cache;
-use OpenClassrooms\CleanArchitecture\Application\Services\Event\Event;
-use OpenClassrooms\CleanArchitecture\Application\Services\Event\EventFactory;
-use OpenClassrooms\CleanArchitecture\Application\Services\Proxy\UseCases\UseCaseProxyBuilder;
-use OpenClassrooms\CleanArchitecture\Application\Services\Security\Security;
-use OpenClassrooms\CleanArchitecture\Application\Services\Transaction\Transaction;
-use OpenClassrooms\CleanArchitecture\BusinessRules\Requestors\UseCase;
+use OpenClassrooms\UseCase\Application\Services\Event\Event;
+use OpenClassrooms\UseCase\Application\Services\Event\EventFactory;
+use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxyBuilder;
+use OpenClassrooms\UseCase\Application\Services\Security\Security;
+use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
+use OpenClassrooms\UseCase\BusinessRules\Requestors\UseCase;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -66,7 +66,7 @@ class UseCaseProxyPass implements CompilerPassInterface
     private function initBuilder()
     {
         $this->builder = $this->container->get(
-            'openclassrooms.clean_architecture.use_case_proxy_builder'
+            'openclassrooms.use_case.use_case_proxy_builder'
         );
     }
 
@@ -106,7 +106,7 @@ class UseCaseProxyPass implements CompilerPassInterface
             if ($security instanceof SecurityContextInterface) {
                 /** @var SecurityFactory $securityFactory */
                 $securityFactory = $this->container->get(
-                    'openclassrooms.clean_architecture.security_factory'
+                    'openclassrooms.use_case.security_factory'
                 );
                 $security = $securityFactory->createSecurityContextSecurity($security);
             }
@@ -139,7 +139,7 @@ class UseCaseProxyPass implements CompilerPassInterface
             $transaction = $this->container->get($parameters['transaction']);
             if ($transaction instanceof EntityManagerInterface) {
                 $transactionAdapterFactory = $this->container->get(
-                    'openclassrooms.clean_architecture.transaction_factory'
+                    'openclassrooms.use_case.transaction_factory'
                 );
                 $transaction = $transactionAdapterFactory->createEntityManagerTransaction(
                     $transaction
@@ -160,7 +160,7 @@ class UseCaseProxyPass implements CompilerPassInterface
             $event = $this->container->get($parameters['event']);
             if ($event instanceof EventDispatcherInterface) {
                 $eventAdapterFactory = $this->container->get(
-                    'openclassrooms.clean_architecture.event_adapter_factory'
+                    'openclassrooms.use_case.event_adapter_factory'
                 );
                 $event = $eventAdapterFactory->createEventDispatcherEvent($event);
             }

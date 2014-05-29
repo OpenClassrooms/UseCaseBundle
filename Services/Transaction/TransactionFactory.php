@@ -1,10 +1,9 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Transaction;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction;
 
 use Doctrine\ORM\EntityManager;
-use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Transaction\Impl\EntityManagerTransactionAdapter;
+use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\EntityManagerTransactionAdapter;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>

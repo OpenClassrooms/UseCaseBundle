@@ -1,9 +1,9 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Transaction\Impl;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl;
 
 use Doctrine\ORM\EntityManager;
-use OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Transaction\TransactionFactory;
+use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\TransactionFactory;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>

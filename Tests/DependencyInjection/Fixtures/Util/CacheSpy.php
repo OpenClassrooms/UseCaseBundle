@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
 use Doctrine\Common\Cache\ArrayCache;
 use OpenClassrooms\Cache\Cache\CacheImpl;
@@ -20,6 +20,7 @@ class CacheSpy extends CacheImpl
     public function save($id, $data, $lifeTime = null)
     {
         self::$saved = true;
+
         return parent::save($id, $data, $lifeTime);
     }
 

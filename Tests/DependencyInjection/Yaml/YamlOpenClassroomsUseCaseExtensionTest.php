@@ -1,33 +1,28 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Yaml;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Yaml;
 
+use OpenClassrooms\Bundle\UseCaseBundle\DependencyInjection\OpenClassroomsUseCaseExtension;
+use OpenClassrooms\Bundle\UseCaseBundle\OpenClassroomsUseCaseBundle;
 use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\DependencyInjection\OpenClassroomsCleanArchitectureExtension;
-use OpenClassrooms\Bundle\CleanArchitectureBundle\OpenClassroomsCleanArchitectureBundle;
+    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\CacheUseCaseStub;
 use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\CacheUseCaseStub;
+    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseRequestStub;
 use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseRequestStub;
+    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub;
 use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub;
+    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\SecurityUseCaseStub;
 use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\SecurityUseCaseStub;
+    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub;
 use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub;
-use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\UseCaseStub;
-use OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\CacheSpy;
-use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy;
-use OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\EventSpy;
-use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\PDOTransactionSpy;
-use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\SecurityContextSpy;
-use
-    OpenClassrooms\Bundle\CleanArchitectureBundle\Tests\DependencyInjection\Fixtures\Util\SecuritySpy;
-use OpenClassrooms\CleanArchitecture\Application\Services\Proxy\UseCases\UseCaseProxy;
+    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\UseCaseStub;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\CacheSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\PDOTransactionSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecurityContextSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecuritySpy;
+use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxy;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -37,9 +32,9 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class YamlOpenClassroomsCacheExtensionTest extends \PHPUnit_Framework_TestCase
+class YamlOpenClassroomsUseCaseExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    const USE_CASE_PROXY_CLASS = 'OpenClassrooms\CleanArchitecture\Application\Services\Proxy\UseCases\Impl\UseCaseProxyImpl';
+    const USE_CASE_PROXY_CLASS = 'OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Impl\UseCaseProxyImpl';
 
     /**
      * @var Extension
@@ -93,15 +88,15 @@ class YamlOpenClassroomsCacheExtensionTest extends \PHPUnit_Framework_TestCase
 
     private function initContainer()
     {
-        $this->extension = new OpenClassroomsCleanArchitectureExtension();
+        $this->extension = new OpenClassroomsUseCaseExtension();
         $this->container = new ContainerBuilder();
         $this->container->registerExtension($this->extension);
-        $this->container->loadFromExtension('openclassrooms_clean_architecture');
+        $this->container->loadFromExtension('openclassrooms_use_case');
 
         $loader = new XmlFileLoader($this->container, new FileLocator(__DIR__ . '/../Fixtures/Resources/config'));
         $loader->load('services.xml');
 
-        $bundle = new OpenClassroomsCleanArchitectureBundle();
+        $bundle = new OpenClassroomsUseCaseBundle();
         $bundle->build($this->container);
 
         $this->loader = new YamlFileLoader($this->container, new FileLocator(__DIR__ . '/Fixtures/Yaml/'));
@@ -209,7 +204,6 @@ class YamlOpenClassroomsCacheExtensionTest extends \PHPUnit_Framework_TestCase
         $useCaseProxy->execute(new UseCaseRequestStub());
         $this->assertTrue(EventSpy::$sent);
     }
-
 
     protected function setUp()
     {

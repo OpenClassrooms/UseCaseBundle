@@ -1,8 +1,8 @@
 <?php
 
-namespace OpenClassrooms\Bundle\CleanArchitectureBundle\Services\Security;
+namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Security;
 
-use OpenClassrooms\CleanArchitecture\Application\Services\Security\Security;
+use OpenClassrooms\UseCase\Application\Services\Security\Security;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
