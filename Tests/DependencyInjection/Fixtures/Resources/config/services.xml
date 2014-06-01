@@ -25,7 +25,7 @@
         <service id="openclassrooms.tests.util.event_stub" class="%openclassrooms.tests.util.event_stub.class%"/>
         <service id="openclassrooms.tests.util.event_dispatcher_stub" class="%openclassrooms.tests.util.event_dispatcher_stub.class%"/>
         <service id="openclassrooms.tests.util.event_factory_stub" class="%openclassrooms.tests.util.event_factory_stub.class%"/>
-        <!--USE CASES-->
+        <!--USE CASES WITHOUT CONFIGURATION-->
         <service id="openclassrooms.tests.use_cases.use_case_stub" class="%openclassrooms.tests.use_cases.use_case_stub.class%"/>
         <service id="openclassrooms.tests.use_cases.use_case_stub_tagged" class="%openclassrooms.tests.use_cases.use_case_stub.class%">
             <tag name="openclassrooms.use_case"/>

@@ -26,6 +26,9 @@ class OpenClassroomsUseCaseExtension extends Extension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config/'));
         $loader->load('services.xml');
+        $config = $this->processConfiguration(new Configuration(), $config);
+        $container->setParameter('openclassrooms.use_case.default_security_context',$config['security_context']);
+        $container->setParameter('openclassrooms.use_case.default_entity_manager',$config['entity_manager']);
     }
 
     /**

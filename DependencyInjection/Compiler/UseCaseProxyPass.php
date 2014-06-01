@@ -3,11 +3,17 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle\DependencyInjection\Compiler;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader;
 use Doctrine\ORM\EntityManagerInterface;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Security\SecurityFactory;
 use OpenClassrooms\Cache\Cache\Cache;
 use OpenClassrooms\UseCase\Application\Services\Event\Event;
 use OpenClassrooms\UseCase\Application\Services\Event\EventFactory;
+use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\CacheIsNotDefinedException;
+use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventFactoryIsNotDefinedException;
+use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventIsNotDefinedException;
+use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\SecurityIsNotDefinedException;
+use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\TransactionIsNotDefinedException;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxyBuilder;
 use OpenClassrooms\UseCase\Application\Services\Security\Security;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
@@ -22,6 +28,9 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
  */
 class UseCaseProxyPass implements CompilerPassInterface
 {
+    /**
+     * @var Reader
+     */
     private $reader;
 
     /**
@@ -65,51 +74,89 @@ class UseCaseProxyPass implements CompilerPassInterface
 
     private function initBuilder()
     {
-        $this->builder = $this->container->get(
-            'openclassrooms.use_case.use_case_proxy_builder'
-        );
+        $this->builder = $this->container->get('openclassrooms.use_case.use_case_proxy_builder');
     }
 
     private function buildUseCaseProxies()
     {
         $taggedServices = $this->container->findTaggedServiceIds('openclassrooms.use_case');
-        foreach ($taggedServices as $taggedServiceName => $parameters) {
-            $parameters = $parameters[0];
-            $this->buildUseCaseProxy($taggedServiceName, $parameters);
+        foreach ($taggedServices as $taggedServiceName => $tagParameters) {
+            $tagParameters = $tagParameters[0];
+            $this->buildUseCaseProxy($taggedServiceName, $tagParameters);
         }
     }
 
-    private function buildUseCaseProxy($taggedServiceName, $parameters)
+    private function buildUseCaseProxy($taggedServiceName, $tagParameters)
     {
-        /** @var UseCase $useCase */
-        $useCase = $this->container->get($taggedServiceName);
-        /** @var UseCaseProxyBuilder $builder */
-        $this->builder
-            ->create($useCase)
-            ->withReader($this->reader)
-            ->withSecurity($this->buildSecurity($parameters))
-            ->withCache($this->buildCache($parameters))
-            ->withTransaction($this->buildTransaction($parameters))
-            ->withEvent($this->buildEvent($parameters))
-            ->withEventFactory($this->buildEventFactory($parameters));
-        $this->container->set($taggedServiceName, $this->builder->build());
+        try {
+            /** @var UseCase $useCase */
+            $useCase = $this->container->get($taggedServiceName);
+            $methodAnnotations = $this->reader->getMethodAnnotations(new \ReflectionMethod($useCase, 'execute'));
+
+            /** @var UseCaseProxyBuilder $builder */
+            $this->builder
+                ->create($useCase)
+                ->withReader($this->reader);
+
+            foreach ($methodAnnotations as $annotation) {
+                if ($annotation instanceof \OpenClassrooms\UseCase\Application\Annotations\Security) {
+                    $this->builder->withSecurity($this->buildSecurity($tagParameters));
+                }
+                if ($annotation instanceof \OpenClassrooms\UseCase\Application\Annotations\Cache) {
+                    $this->builder->withCache($this->buildCache($tagParameters));
+                }
+                if ($annotation instanceof \OpenClassrooms\UseCase\Application\Annotations\Transaction) {
+                    $this->builder->withTransaction($this->buildTransaction($tagParameters));
+                }
+                if ($annotation instanceof \OpenClassrooms\UseCase\Application\Annotations\Event) {
+                    $this->builder
+                        ->withEvent($this->buildEvent($tagParameters))
+                        ->withEventFactory($this->buildEventFactory($tagParameters));
+                }
+            }
+            $this->container->set($taggedServiceName, $this->builder->build());
+        } catch (SecurityIsNotDefinedException $sinde) {
+            throw new SecurityIsNotDefinedException(
+                'Security should be defined for use case: '
+                . $taggedServiceName . '. '
+                . $sinde->getMessage());
+        } catch (CacheIsNotDefinedException $cinde) {
+            throw new CacheIsNotDefinedException('Cache should be defined for use case: '
+                . $taggedServiceName . '. '
+                . $cinde->getMessage());
+        } catch (TransactionIsNotDefinedException $tinde) {
+            throw new TransactionIsNotDefinedException('Transaction should be defined for use case: '
+                . $taggedServiceName . '. '
+                . $tinde->getMessage());
+        } catch (EventIsNotDefinedException $einde) {
+            throw new EventIsNotDefinedException('Event should be defined for use case: ' . $taggedServiceName);
+        } catch (EventFactoryIsNotDefinedException $efinde) {
+            throw new EventFactoryIsNotDefinedException('EventFactory should be defined for use case: ' . $taggedServiceName);
+        }
     }
 
     /**
      * @return Security
      */
-    private function buildSecurity(array $parameters)
+    private function buildSecurity(array $tagParameters)
     {
-        $security = null;
-        if (isset($parameters['security'])) {
-            $security = $this->container->get($parameters['security']);
-            if ($security instanceof SecurityContextInterface) {
-                /** @var SecurityFactory $securityFactory */
-                $securityFactory = $this->container->get(
-                    'openclassrooms.use_case.security_factory'
-                );
-                $security = $securityFactory->createSecurityContextSecurity($security);
+        if (isset($tagParameters['security'])) {
+            $security = $this->container->get($tagParameters['security']);
+        } else {
+            $defaultSecurityContextId = $this->container->getParameter(
+                'openclassrooms.use_case.default_security_context'
+            );
+            if (!$this->container->has($defaultSecurityContextId)) {
+                throw new SecurityIsNotDefinedException('Default security context: \'' . $defaultSecurityContextId . '\' is not defined.');
             }
+            $security = $this->container->get(
+                $this->container->getParameter('openclassrooms.use_case.default_security_context')
+            );
+        }
+        if ($security instanceof SecurityContextInterface) {
+            /** @var SecurityFactory $securityFactory */
+            $securityFactory = $this->container->get('openclassrooms.use_case.security_factory');
+            $security = $securityFactory->createSecurityContextSecurity($security);
         }
 
         return $security;
@@ -118,12 +165,15 @@ class UseCaseProxyPass implements CompilerPassInterface
     /**
      * @return Cache
      */
-    private function buildCache(array $parameters)
+    private function buildCache(array $tagParameters)
     {
-        $cache = null;
-        if (isset ($parameters['cache'])) {
+        if (isset ($tagParameters['cache'])) {
             /** @var Cache $cache */
-            $cache = $this->container->get($parameters['cache']);
+            $cache = $this->container->get($tagParameters['cache']);
+        } elseif ($this->container->has('openclassrooms.cache.cache')) {
+            $cache = $this->container->get('openclassrooms.cache.cache');
+        } else {
+            throw new CacheIsNotDefinedException('Default cache is not defined. Have you configured openclassrooms_cache ?');
         }
 
         return $cache;
@@ -132,19 +182,22 @@ class UseCaseProxyPass implements CompilerPassInterface
     /**
      * @return Transaction
      */
-    private function buildTransaction(array $parameters)
+    private function buildTransaction(array $tagParameters)
     {
-        $transaction = null;
-        if (isset($parameters['transaction'])) {
-            $transaction = $this->container->get($parameters['transaction']);
-            if ($transaction instanceof EntityManagerInterface) {
-                $transactionAdapterFactory = $this->container->get(
-                    'openclassrooms.use_case.transaction_factory'
-                );
-                $transaction = $transactionAdapterFactory->createEntityManagerTransaction(
-                    $transaction
-                );
+        if (isset($tagParameters['transaction'])) {
+            $transaction = $this->container->get($tagParameters['transaction']);
+        } else {
+            $defaultEntityManagerId = $this->container->getParameter('openclassrooms.use_case.default_entity_manager');
+            if (!$this->container->has($defaultEntityManagerId)) {
+                throw new TransactionIsNotDefinedException('Default entity manager: \'' . $defaultEntityManagerId . '\' is not defined.');
             }
+            $transaction = $this->container->get(
+                $this->container->getParameter('openclassrooms.use_case.default_entity_manager')
+            );
+        }
+        if ($transaction instanceof EntityManagerInterface) {
+            $transactionAdapterFactory = $this->container->get('openclassrooms.use_case.transaction_factory');
+            $transaction = $transactionAdapterFactory->createEntityManagerTransaction($transaction);
         }
 
         return $transaction;
@@ -159,9 +212,7 @@ class UseCaseProxyPass implements CompilerPassInterface
         if (isset($parameters['event'])) {
             $event = $this->container->get($parameters['event']);
             if ($event instanceof EventDispatcherInterface) {
-                $eventAdapterFactory = $this->container->get(
-                    'openclassrooms.use_case.event_adapter_factory'
-                );
+                $eventAdapterFactory = $this->container->get('openclassrooms.use_case.event_adapter_factory');
                 $event = $eventAdapterFactory->createEventDispatcherEvent($event);
             }
         }

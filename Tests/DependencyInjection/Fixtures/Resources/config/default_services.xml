@@ -1,0 +1,8 @@
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="openclassrooms.tests.util.configuration_security_context_stub" class="%openclassrooms.tests.util.security_context_stub.class%"/>
+        <service id="security_context" class="%openclassrooms.tests.util.security_context_stub.class%"/>
+        <service id="openclassrooms.tests.util.configuration_entity_manager_stub" class="%openclassrooms.tests.util.entity_manager_stub.class%"/>
+        <service id="doctrine.orm.entity_manager" class="%openclassrooms.tests.util.entity_manager_stub.class%"/>
+    </services>
+</container>

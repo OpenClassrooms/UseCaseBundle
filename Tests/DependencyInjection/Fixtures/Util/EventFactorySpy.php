@@ -3,8 +3,7 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
 use OpenClassrooms\UseCase\Application\Services\Event\EventFactory;
-use
-    OpenClassrooms\UseCase\Application\Services\Event\Exceptions\InvalidEventNameException;
+use OpenClassrooms\UseCase\Application\Services\Event\Exceptions\InvalidEventNameException;
 use OpenClassrooms\UseCase\BusinessRules\Requestors\UseCaseRequest;
 use OpenClassrooms\UseCase\BusinessRules\Responders\UseCaseResponse;
 

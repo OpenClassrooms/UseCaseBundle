@@ -3,6 +3,7 @@
         <parameter key="openclassrooms.use_case.use_case_proxy_builder.class">OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Impl\UseCaseProxyBuilderImpl</parameter>
         <parameter key="openclassrooms.use_case.security_factory.class">OpenClassrooms\Bundle\UseCaseBundle\Services\Security\Impl\SecurityFactoryImpl</parameter>
         <parameter key="openclassrooms.use_case.transaction_factory.class">OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\TransactionFactoryImpl</parameter>
+        <!--<parameter key="openclassrooms.use_case.default_security_context"/>-->
     </parameters>
     <services>
         <service id="openclassrooms.use_case.use_case_proxy_builder" class="%openclassrooms.use_case.use_case_proxy_builder.class%"/>

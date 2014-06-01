@@ -3,8 +3,7 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\Services\Transaction\Impl;
 
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\EntityManagerTransactionAdapter;
-use
-    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
 
 /**

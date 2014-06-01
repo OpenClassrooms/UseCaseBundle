@@ -3,10 +3,8 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\Services\Security\Impl;
 
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Security\Impl\SecurityContextSecurityAdapter;
-use
-    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\NotGrantedSecurityContextStub;
-use
-    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecurityContextSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\NotGrantedSecurityContextStub;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecurityContextSpy;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
