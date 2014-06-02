@@ -1,0 +1,3 @@
+openclassrooms_use_case:
+    event: openclassrooms.tests.util.configuration_event_dispatcher_stub
+    event_factory: openclassrooms.tests.util.configuration_event_factory_stub

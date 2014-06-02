@@ -3,14 +3,12 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Compiler;
 
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\AbstractDependencyInjectionTest;
-use
-    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseRequestStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\SecurityUseCaseStub;
 use
     OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\UseCaseStub;
-use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventSenderSpy;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\PDOTransactionSpy;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecuritySpy;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxy;
@@ -127,22 +125,19 @@ class UseCaseProxyPassTest extends AbstractDependencyInjectionTest
 
         $this->assertUseCaseProxy($useCaseProxy);
         $this->assertEquals(new EventUseCaseStub(), $useCaseProxy->getUseCase());
-        $this->assertTrue(EventSpy::$sent);
+        $this->assertTrue(EventSenderSpy::$sent);
+        $this->assertEquals(EventUseCaseStub::EVENT_NAME, EventSenderSpy::$eventName);
     }
 
     /**
-     * test
+     * @test
      */
     public function WithEventDispatcherEventUseCase_ReturnProxy()
     {
         /** @var UseCaseProxy $useCaseProxy */
         $useCaseProxy = $this->container->get('openclassrooms.tests.use_cases.event_dispatcher_event_use_case_stub');
 
-        $useCaseProxy->execute(new UseCaseRequestStub());
-
-        $this->assertInstanceOf(self::USE_CASE_PROXY_CLASS, $useCaseProxy);
-        $this->assertEquals(new EventUseCaseStub(), $useCaseProxy->getUseCase());
-        $this->assertTrue(EventSpy::$sent);
+        $this->assertEventUseCaseProxy($useCaseProxy);
     }
 
     protected function setUp()

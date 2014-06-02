@@ -7,8 +7,9 @@ use Doctrine\Common\Annotations\Reader;
 use Doctrine\ORM\EntityManagerInterface;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Security\SecurityFactory;
 use OpenClassrooms\Cache\Cache\Cache;
-use OpenClassrooms\UseCase\Application\Services\Event\Event;
+use OpenClassrooms\UseCase\Application\Annotations\Event;
 use OpenClassrooms\UseCase\Application\Services\Event\EventFactory;
+use OpenClassrooms\UseCase\Application\Services\Event\EventSender;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\CacheIsNotDefinedException;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventFactoryIsNotDefinedException;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventIsNotDefinedException;
@@ -108,7 +109,7 @@ class UseCaseProxyPass implements CompilerPassInterface
                 if ($annotation instanceof \OpenClassrooms\UseCase\Application\Annotations\Transaction) {
                     $this->builder->withTransaction($this->buildTransaction($tagParameters));
                 }
-                if ($annotation instanceof \OpenClassrooms\UseCase\Application\Annotations\Event) {
+                if ($annotation instanceof Event) {
                     $this->builder
                         ->withEvent($this->buildEvent($tagParameters))
                         ->withEventFactory($this->buildEventFactory($tagParameters));
@@ -129,9 +130,13 @@ class UseCaseProxyPass implements CompilerPassInterface
                 . $taggedServiceName . '. '
                 . $tinde->getMessage());
         } catch (EventIsNotDefinedException $einde) {
-            throw new EventIsNotDefinedException('Event should be defined for use case: ' . $taggedServiceName);
+            throw new EventIsNotDefinedException('EventSender should be defined for use case: '
+                . $taggedServiceName . '. '
+                . $einde->getMessage());
         } catch (EventFactoryIsNotDefinedException $efinde) {
-            throw new EventFactoryIsNotDefinedException('EventFactory should be defined for use case: ' . $taggedServiceName);
+            throw new EventFactoryIsNotDefinedException('EventFactory should be defined for use case: '
+                . $taggedServiceName . '. '
+                . $efinde->getMessage());
         }
     }
 
@@ -204,17 +209,22 @@ class UseCaseProxyPass implements CompilerPassInterface
     }
 
     /**
-     * @return Event
+     * @return EventSender
      */
     private function buildEvent(array $parameters)
     {
-        $event = null;
         if (isset($parameters['event'])) {
             $event = $this->container->get($parameters['event']);
-            if ($event instanceof EventDispatcherInterface) {
-                $eventAdapterFactory = $this->container->get('openclassrooms.use_case.event_adapter_factory');
-                $event = $eventAdapterFactory->createEventDispatcherEvent($event);
+        } else {
+            $defaultEventId = $this->container->getParameter('openclassrooms.use_case.default_event');
+            if (!$this->container->has($defaultEventId)) {
+                throw new EventIsNotDefinedException('Default EventSender: \'' . $defaultEventId . '\' is not defined.');
             }
+            $event = $this->container->get($this->container->getParameter('openclassrooms.use_case.default_event'));
+        }
+        if ($event instanceof EventDispatcherInterface) {
+            $eventAdapterFactory = $this->container->get('openclassrooms.use_case.event_adapter_factory');
+            $event = $eventAdapterFactory->createEventDispatcherEvent($event);
         }
 
         return $event;
@@ -228,6 +238,12 @@ class UseCaseProxyPass implements CompilerPassInterface
         $eventFactory = null;
         if (isset($parameters['event-factory'])) {
             $eventFactory = $this->container->get($parameters['event-factory']);
+        } else {
+            $defaultEventFactoryId = $this->container->getParameter('openclassrooms.use_case.default_event_factory');
+            if (!$this->container->has($defaultEventFactoryId)) {
+                throw new EventFactoryIsNotDefinedException('Default EventFactory: \'' . $defaultEventFactoryId . '\' is not defined.');
+            }
+            $eventFactory = $this->container->get($this->container->getParameter('openclassrooms.use_case.default_event_factory'));
         }
 
         return $eventFactory;

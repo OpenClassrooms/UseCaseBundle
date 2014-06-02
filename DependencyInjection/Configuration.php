@@ -22,6 +22,8 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
                     ->scalarNode('security_context')->defaultValue('security_context')->end()
                     ->scalarNode('entity_manager')->defaultValue('doctrine.orm.entity_manager')->end()
+                    ->scalarNode('event')->defaultValue('event_dispatcher')->end()
+                    ->scalarNode('event_factory')->defaultValue('openclassrooms.use_case.event_factory')->end()
                   ->end();
 
         return $treeBuilder;

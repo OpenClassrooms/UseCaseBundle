@@ -44,7 +44,8 @@ class CacheOpenClassroomsUseCaseExtensionTest extends AbstractDependencyInjectio
         $this->assertUseCaseProxy($useCaseProxy);
     }
 
-    protected function setUp(){
+    protected function setUp()
+    {
         $this->initContainer();
         $this->serviceLoader->load('cache_configuration_services.xml');
     }

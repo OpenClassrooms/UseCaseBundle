@@ -5,7 +5,7 @@
         <parameter key="openclassrooms.tests.util.cache_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\CacheSpy</parameter>
         <parameter key="openclassrooms.tests.util.entity_manager_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy</parameter>
         <parameter key="openclassrooms.tests.util.pdo_transaction_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\PDOTransactionSpy</parameter>
-        <parameter key="openclassrooms.tests.util.event_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventSpy</parameter>
+        <parameter key="openclassrooms.tests.util.event_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventSenderSpy</parameter>
         <parameter key="openclassrooms.tests.util.event_dispatcher_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventDispatcherSpy</parameter>
         <parameter key="openclassrooms.tests.util.event_factory_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventFactorySpy</parameter>
         <!--USE CASES-->
@@ -48,6 +48,8 @@
         <service id="openclassrooms.tests.use_cases.event_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%">
             <tag name="openclassrooms.use_case" event="openclassrooms.tests.util.event_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>
         </service>
-        <!--<service id="openclassrooms.tests.use_cases.event_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%">--><!--<tag name="openclassrooms.use_case" event="openclassrooms.tests.util.event_dispatcher_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>--><!--</service>-->
+        <service id="openclassrooms.tests.use_cases.event_dispatcher_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%">
+            <tag name="openclassrooms.use_case" event="openclassrooms.tests.util.event_dispatcher_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>
+        </service>
     </services>
 </container>
