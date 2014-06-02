@@ -2,7 +2,7 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\EntityManagerTransactionAdapter;
 
 /**
@@ -13,5 +13,5 @@ interface TransactionFactory
     /**
      * @return EntityManagerTransactionAdapter
      */
-    public function createEntityManagerTransaction(EntityManager $entityManager);
+    public function createEntityManagerTransaction(EntityManagerInterface $entityManager);
 }
