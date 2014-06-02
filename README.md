@@ -8,10 +8,10 @@ UseCaseBundle provides UseCase Library in a Symfony2 context.
 For usage of UseCase Library, please see the UseCase Library [documentation](https://github.com/OpenClassrooms/UseCase/blob/master/README.md#usage).
 
 ## Installation
-### Composer 
-The easiest way to install UseCaseBundle is via [composer](http://getcomposer.org/).
+This bundle can be installed using composer:
 
-Create the following `composer.json` file and run the `php composer.phar install` command to install it.
+```composer require jms/serializer-bundle```
+or by adding the package to the composer.json file directly.
 
 ```json
 {
@@ -21,9 +21,47 @@ Create the following `composer.json` file and run the `php composer.phar install
 }
 ```
 
-### Register the bundle
+After the package has been installed, add the bundle to the AppKernel.php file:
 
+```php
+// in AppKernel::registerBundles()
+    $bundles = array(
+        // ...
+        new OpenClassrooms\Bundle\OpenUseCaseBundle(),
+        // ...
+);
+```
+If cache facilities are needed, add the OpenClassrooms\CacheBundle to the AppKernel.php file:
+
+```php
+// in AppKernel::registerBundles()
+    $bundles = array(
+        // ...
+        new OpenClassrooms\Bundle\CacheBundle\OpenClassroomsCacheBundle(),
+        new OpenClassrooms\Bundle\UseCaseBundle\OpenClassroomsUseCaseBundle(),
+        // ...
+);
+```
 
 ## Configuration
+UseCaseBundle requires no initial configuration.
+
+This is the default configuration:
+```yaml
+# app/config/config.yml
+openclassrooms_use_case:
+    security: security_context               
+    # an implementation of SecurityContextInterface or OpenClassrooms\UseCase\Application\Services\Security\Security
+    transaction: doctrine.orm.entity_manager
+    # an implementation of EntityManagerInterface or OpenClassrooms\UseCase\Application\Services\Transaction\Transaction
+    event_sender: event_dispatcher
+    # an implementation of EventDispatcherInterface or OpenClassrooms\UseCase\Application\Services\Event\EventSender
+    event_factory: openclassrooms.use_case.event_factory
+    # an implementation of OpenClassrooms\UseCase\Application\Services\Event\EventFactory
+```
+
+If cache facilities are needed, CacheBundle configuration MUST be set. See [documentation](https://github.com/OpenClassrooms/CacheBundle/blob/master/README.md#configuration) for more details.
+
+Furthermore, **only needed services are used**. It means, for example, if only security is used, the others services will never be called. **Even if the services of the default configuration exist or not.**
 
 ## Usage
