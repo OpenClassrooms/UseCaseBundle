@@ -2,22 +2,22 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\DBAL\Connection;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class EntityManagerTransactionAdapter implements Transaction
+class DoctrineDBALConnectionTransactionAdapter implements Transaction
 {
     /**
-     * @var EntityManagerInterface
+     * @var Connection
      */
-    private $entityManager;
+    private $connection;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(Connection $connection)
     {
-        $this->entityManager = $entityManager;
+        $this->connection = $connection;
     }
 
     /**
@@ -26,7 +26,7 @@ class EntityManagerTransactionAdapter implements Transaction
     public function beginTransaction()
     {
         if (!$this->isTransactionActive()) {
-            $this->entityManager->beginTransaction();
+            $this->connection->beginTransaction();
         }
 
         return true;
@@ -37,7 +37,7 @@ class EntityManagerTransactionAdapter implements Transaction
      */
     public function isTransactionActive()
     {
-        return $this->entityManager->getConnection()->isTransactionActive();
+        return $this->connection->isTransactionActive();
     }
 
     /**
@@ -45,7 +45,7 @@ class EntityManagerTransactionAdapter implements Transaction
      */
     public function commit()
     {
-        $this->entityManager->commit();
+        $this->connection->commit();
 
         return true;
     }
@@ -55,7 +55,7 @@ class EntityManagerTransactionAdapter implements Transaction
      */
     public function rollBack()
     {
-        $this->entityManager->rollback();
+        $this->connection->rollback();
 
         return true;
     }

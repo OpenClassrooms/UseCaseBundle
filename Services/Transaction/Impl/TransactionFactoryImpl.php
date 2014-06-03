@@ -2,7 +2,7 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\DBAL\Connection;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\TransactionFactory;
 
 /**
@@ -11,10 +11,10 @@ use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\TransactionFactory;
 class TransactionFactoryImpl implements TransactionFactory
 {
     /**
-     * @return EntityManagerTransactionAdapter
+     * @return DoctrineDBALConnectionTransactionAdapter
      */
-    public function createEntityManagerTransaction(EntityManagerInterface $entityManager)
+    public function createDoctrineDBALConnectionTransaction(Connection $connection)
     {
-        return new EntityManagerTransactionAdapter($entityManager);
+        return new DoctrineDBALConnectionTransactionAdapter($connection);
     }
 }

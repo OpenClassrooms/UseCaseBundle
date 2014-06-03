@@ -16,7 +16,7 @@ use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Busin
 use
     OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\CacheSpy;
-use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\ConnectionMock;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventDispatcherSpy;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecurityContextSpy;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxy;
@@ -102,7 +102,7 @@ abstract class AbstractDependencyInjectionTest extends \PHPUnit_Framework_TestCa
     {
         $this->assertUseCaseProxy($useCaseProxy);
         $this->assertEquals(new TransactionUseCaseStub(), $useCaseProxy->getUseCase());
-        $this->assertTrue(EntityManagerSpy::$committed);
+        $this->assertTrue(ConnectionMock::$committed);
     }
 
     protected function assertEventUseCaseProxy(UseCaseProxy $useCaseProxy)

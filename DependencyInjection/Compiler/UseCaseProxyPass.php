@@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\ORM\EntityManagerInterface;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Security\SecurityFactory;
+use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\TransactionFactory;
 use OpenClassrooms\Cache\Cache\Cache;
 use OpenClassrooms\UseCase\Application\Annotations\Event;
 use OpenClassrooms\UseCase\Application\Services\Event\EventFactory;
@@ -201,8 +202,9 @@ class UseCaseProxyPass implements CompilerPassInterface
             );
         }
         if ($transaction instanceof EntityManagerInterface) {
+            /** @var TransactionFactory $transactionAdapterFactory */
             $transactionAdapterFactory = $this->container->get('openclassrooms.use_case.transaction_factory');
-            $transaction = $transactionAdapterFactory->createEntityManagerTransaction($transaction);
+            $transaction = $transactionAdapterFactory->createDoctrineDBALConnectionTransaction($transaction->getConnection());
         }
 
         return $transaction;
