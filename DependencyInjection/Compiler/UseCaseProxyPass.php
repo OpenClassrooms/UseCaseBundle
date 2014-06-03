@@ -213,14 +213,14 @@ class UseCaseProxyPass implements CompilerPassInterface
      */
     private function buildEvent(array $parameters)
     {
-        if (isset($parameters['event'])) {
-            $event = $this->container->get($parameters['event']);
+        if (isset($parameters['event-sender'])) {
+            $event = $this->container->get($parameters['event-sender']);
         } else {
-            $defaultEventId = $this->container->getParameter('openclassrooms.use_case.default_event');
+            $defaultEventId = $this->container->getParameter('openclassrooms.use_case.default_event_sender');
             if (!$this->container->has($defaultEventId)) {
                 throw new EventIsNotDefinedException('Default EventSender: \'' . $defaultEventId . '\' is not defined.');
             }
-            $event = $this->container->get($this->container->getParameter('openclassrooms.use_case.default_event'));
+            $event = $this->container->get($this->container->getParameter('openclassrooms.use_case.default_event_sender'));
         }
         if ($event instanceof EventDispatcherInterface) {
             $eventAdapterFactory = $this->container->get('openclassrooms.use_case.event_adapter_factory');

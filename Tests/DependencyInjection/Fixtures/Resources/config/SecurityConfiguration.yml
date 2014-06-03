@@ -1,2 +1,2 @@
 openclassrooms_use_case:
-    security_context: openclassrooms.tests.util.configuration_security_context_stub
+    security: openclassrooms.tests.util.configuration_security_context_stub

@@ -46,10 +46,10 @@
             <tag name="openclassrooms.use_case" transaction="openclassrooms.tests.util.entity_manager_stub"/>
         </service>
         <service id="openclassrooms.tests.use_cases.event_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%">
-            <tag name="openclassrooms.use_case" event="openclassrooms.tests.util.event_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>
+            <tag name="openclassrooms.use_case" event-sender="openclassrooms.tests.util.event_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>
         </service>
         <service id="openclassrooms.tests.use_cases.event_dispatcher_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%">
-            <tag name="openclassrooms.use_case" event="openclassrooms.tests.util.event_dispatcher_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>
+            <tag name="openclassrooms.use_case" event-sender="openclassrooms.tests.util.event_dispatcher_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>
         </service>
     </services>
 </container>
