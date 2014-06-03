@@ -7,10 +7,11 @@ UseCaseBundle
 UseCaseBundle provides OpenClassrooms\UseCase Library in a Symfony2 context. 
 UseCase Library provides facilities to manage technical code over a Use Case in a Clean / Hexagonal / Use Case Architecture.
 
-- Security access
-- Cache management
-- Transactional context
-- Events
+- **Security access**
+- **Cache management**
+- **Transactional context**
+- **Events**
+
 The goal is to have only functional code on the Use Case and manage technical code in an elegant way using annotations.
 
 For usage of UseCase Library, please see the UseCase Library [documentation](https://github.com/OpenClassrooms/UseCase/blob/master/README.md#usage).
@@ -98,7 +99,7 @@ Add the tag ```openclassrooms.use_case``` to the use case declaration to enable 
 </container>
 ```
 
-The different services used are those defined in the configuration.
+The different services used are those defined in the configuration file. 
 For each tag and each facilities, a specific service can be set:
 
 ```xml
@@ -111,7 +112,7 @@ For each tag and each facilities, a specific service can be set:
                     event-factory="a.different.event_factory"/>
         </service>
 ```
-- *security* parameter MUST be an implementation of SecurityContextInterface or  OpenClassrooms\UseCase\Application\Services\Security\Security
+- *security* parameter MUST be an implementation of SecurityContextInterface or OpenClassrooms\UseCase\Application\Services\Security\Security
 - *cache* parameter MUST be an implementation of OpenClassrooms\Cache\Cache\Cache
 - *transaction* parameter MUST be an implementation of EntityManagerInterface or OpenClassrooms\UseCase\Application\Services\Transaction\Transaction
 - *event-sender* parameter MUST be an implementation of EventDispatcherInterface or OpenClassrooms\UseCase\Application\Services\Event\EventSender
