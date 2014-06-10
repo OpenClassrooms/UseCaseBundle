@@ -94,9 +94,7 @@ class UseCaseProxyPassTest extends AbstractDependencyInjectionTest
     public function WithEntityManagerTransactionUseCase_ReturnProxy()
     {
         /** @var UseCaseProxy $useCaseProxy */
-        $useCaseProxy = $this->container->get(
-            'openclassrooms.tests.use_cases.entity_manager_transaction_use_case_stub'
-        );
+        $useCaseProxy = $this->container->get('openclassrooms.tests.use_cases.entity_manager_transaction_use_case_stub');
 
         $this->assertTransactionUseCaseProxy($useCaseProxy);
 

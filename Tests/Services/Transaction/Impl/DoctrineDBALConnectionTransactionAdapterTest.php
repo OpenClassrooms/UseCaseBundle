@@ -2,7 +2,7 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\Services\Transaction\Impl;
 
-use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\EntityManagerTransactionAdapter;
+use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\DoctrineDBALConnectionTransactionAdapter;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\ConnectionMock;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
@@ -10,7 +10,7 @@ use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class EntityManagerTransactionAdapterTest extends \PHPUnit_Framework_TestCase
+class DoctrineDBALConnectionTransactionAdapterTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var EntityManagerSpy
@@ -51,7 +51,6 @@ class EntityManagerTransactionAdapterTest extends \PHPUnit_Framework_TestCase
         $this->transaction->beginTransaction();
         $committed = $this->transaction->commit();
         $this->assertTrue($committed);
-        $this->assertTrue(EntityManagerSpy::$flushed);
         $this->assertTrue(ConnectionMock::$committed);
     }
     /**
@@ -68,6 +67,6 @@ class EntityManagerTransactionAdapterTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->entityManager = new EntityManagerSpy();
-        $this->transaction = new EntityManagerTransactionAdapter($this->entityManager);
+        $this->transaction = new DoctrineDBALConnectionTransactionAdapter($this->entityManager->getConnection());
     }
 }
