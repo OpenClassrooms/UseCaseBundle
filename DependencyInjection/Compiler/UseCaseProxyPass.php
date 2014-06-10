@@ -204,7 +204,7 @@ class UseCaseProxyPass implements CompilerPassInterface
         if ($transaction instanceof EntityManagerInterface) {
             /** @var TransactionFactory $transactionAdapterFactory */
             $transactionAdapterFactory = $this->container->get('openclassrooms.use_case.transaction_factory');
-            $transaction = $transactionAdapterFactory->createDoctrineDBALConnectionTransaction($transaction->getConnection());
+            $transaction = $transactionAdapterFactory->createEntityManagerTransaction($transaction);
         }
 
         return $transaction;
