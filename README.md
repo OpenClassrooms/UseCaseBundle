@@ -36,7 +36,7 @@ After the package has been installed, add the bundle to the AppKernel.php file:
 // in AppKernel::registerBundles()
     $bundles = array(
         // ...
-        new OpenClassrooms\Bundle\OpenUseCaseBundle(),
+        new OpenClassrooms\Bundle\OpenClassroomsUseCaseBundle(),
         // ...
 );
 ```
