@@ -40,6 +40,6 @@ class OpenClassroomsUseCaseExtension extends Extension
      */
     public function getAlias()
     {
-        return 'openclassrooms_use_case';
+        return 'open_classrooms_use_case';
     }
 }
