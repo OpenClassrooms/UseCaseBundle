@@ -60,7 +60,7 @@ abstract class AbstractDependencyInjectionTest extends \PHPUnit_Framework_TestCa
     {
         $useCaseExtension = new OpenClassroomsUseCaseExtension();
         $this->container->registerExtension($useCaseExtension);
-        $this->container->loadFromExtension('openclassrooms_use_case');
+        $this->container->loadFromExtension('open_classrooms_use_case');
         $bundle = new OpenClassroomsUseCaseBundle();
         $bundle->build($this->container);
     }
