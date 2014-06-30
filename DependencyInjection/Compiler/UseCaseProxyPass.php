@@ -4,7 +4,7 @@ namespace OpenClassrooms\Bundle\UseCaseBundle\DependencyInjection\Compiler;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Security\SecurityFactory;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\TransactionFactory;
 use OpenClassrooms\Cache\Cache\Cache;
@@ -201,7 +201,7 @@ class UseCaseProxyPass implements CompilerPassInterface
                 $this->container->getParameter('openclassrooms.use_case.default_entity_manager')
             );
         }
-        if ($transaction instanceof EntityManagerInterface) {
+        if ($transaction instanceof ObjectManager) {
             /** @var TransactionFactory $transactionAdapterFactory */
             $transactionAdapterFactory = $this->container->get('openclassrooms.use_case.transaction_factory');
             $transaction = $transactionAdapterFactory->createEntityManagerTransaction($transaction);

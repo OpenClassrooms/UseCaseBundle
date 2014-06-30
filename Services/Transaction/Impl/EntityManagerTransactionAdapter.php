@@ -2,6 +2,7 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
 
@@ -11,11 +12,11 @@ use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
 class EntityManagerTransactionAdapter implements Transaction
 {
     /**
-     * @var EntityManagerInterface::
+     * @var EntityManagerInterface
      */
     private $em;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(ObjectManager $em)
     {
         $this->em = $em;
 

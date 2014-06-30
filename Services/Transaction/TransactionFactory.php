@@ -2,8 +2,8 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\DBAL\Connection;
-use Doctrine\ORM\EntityManagerInterface;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\DoctrineDBALConnectionTransactionAdapter;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\EntityManagerTransactionAdapter;
 
@@ -20,5 +20,5 @@ interface TransactionFactory
     /**
      * @return EntityManagerTransactionAdapter
      */
-    public function createEntityManagerTransaction(EntityManagerInterface $em);
+    public function createEntityManagerTransaction(ObjectManager $em);
 }

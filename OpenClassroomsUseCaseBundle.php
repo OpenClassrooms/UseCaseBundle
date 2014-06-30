@@ -3,6 +3,7 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle;
 
 use OpenClassrooms\Bundle\UseCaseBundle\DependencyInjection\Compiler\UseCaseProxyPass;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -15,6 +16,6 @@ class OpenClassroomsUseCaseBundle extends Bundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new UseCaseProxyPass());
+        $container->addCompilerPass(new UseCaseProxyPass(), PassConfig::TYPE_AFTER_REMOVING);
     }
 }
