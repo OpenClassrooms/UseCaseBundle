@@ -100,7 +100,7 @@ Add the tag ```openclassrooms.use_case``` to the use case declaration to enable 
 ```
 
 The different services used are those defined in the configuration file. 
-For each tag and each facilities, a specific service can be set:
+For each tag and each facility, a specific service can be set:
 
 ```xml
         <service id="a_project.a_use_case" class="a_project.a_use_case.class">
