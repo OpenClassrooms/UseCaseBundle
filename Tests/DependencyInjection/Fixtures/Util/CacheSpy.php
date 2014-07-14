@@ -6,7 +6,7 @@ use Doctrine\Common\Cache\ArrayCache;
 use OpenClassrooms\Cache\Cache\CacheImpl;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class CacheSpy extends CacheImpl
 {

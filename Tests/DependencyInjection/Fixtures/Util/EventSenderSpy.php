@@ -5,7 +5,7 @@ namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures
 use OpenClassrooms\UseCase\Application\Services\Event\EventSender;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class EventSenderSpy implements EventSender
 {

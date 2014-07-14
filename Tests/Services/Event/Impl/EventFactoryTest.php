@@ -10,7 +10,7 @@ use
     OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseResponseStub;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class EventFactoryTest extends \PHPUnit_Framework_TestCase
 {

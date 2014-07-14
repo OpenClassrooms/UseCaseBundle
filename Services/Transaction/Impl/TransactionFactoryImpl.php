@@ -7,7 +7,7 @@ use Doctrine\DBAL\Connection;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\TransactionFactory;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class TransactionFactoryImpl implements TransactionFactory
 {

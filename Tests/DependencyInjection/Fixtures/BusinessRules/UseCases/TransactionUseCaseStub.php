@@ -7,7 +7,7 @@ use OpenClassrooms\UseCase\BusinessRules\Responders\UseCaseResponse;
 use OpenClassrooms\UseCase\Application\Annotations\Transaction;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class TransactionUseCaseStub extends UseCaseStub
 {

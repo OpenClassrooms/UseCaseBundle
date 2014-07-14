@@ -6,7 +6,7 @@ use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\TransactionFac
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\ConnectionMock;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class TransactionFactoryTest extends \PHPUnit_Framework_TestCase
 {

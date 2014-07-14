@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\DBAL\Connection;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class EntityManagerSpy extends EntityManager
 {

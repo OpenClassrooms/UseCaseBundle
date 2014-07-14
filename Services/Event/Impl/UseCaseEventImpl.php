@@ -8,7 +8,7 @@ use OpenClassrooms\UseCase\BusinessRules\Responders\UseCaseResponse;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class UseCaseEventImpl extends Event implements UseCaseEvent
 {

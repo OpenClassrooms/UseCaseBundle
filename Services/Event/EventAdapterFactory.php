@@ -6,7 +6,7 @@ use OpenClassrooms\UseCase\Application\Services\Event\EventSender;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 interface EventAdapterFactory
 {

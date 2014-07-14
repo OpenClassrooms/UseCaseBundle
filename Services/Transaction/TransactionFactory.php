@@ -8,7 +8,7 @@ use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\DoctrineDBALCo
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\EntityManagerTransactionAdapter;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 interface TransactionFactory
 {

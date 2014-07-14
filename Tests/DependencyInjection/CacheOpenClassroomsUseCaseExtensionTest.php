@@ -7,7 +7,7 @@ use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxy;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class CacheOpenClassroomsUseCaseExtensionTest extends AbstractDependencyInjectionTest
 {

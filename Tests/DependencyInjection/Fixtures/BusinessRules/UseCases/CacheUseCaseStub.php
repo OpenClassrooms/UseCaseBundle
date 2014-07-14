@@ -7,7 +7,7 @@ use OpenClassrooms\UseCase\BusinessRules\Responders\UseCaseResponse;
 use OpenClassrooms\UseCase\Application\Annotations\Cache;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class CacheUseCaseStub extends UseCaseStub
 {

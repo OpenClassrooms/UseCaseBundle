@@ -7,7 +7,7 @@ use OpenClassrooms\UseCase\BusinessRules\Responders\UseCaseResponse;
 use OpenClassrooms\UseCase\Application\Annotations\Security;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class SecurityUseCaseStub extends UseCaseStub
 {

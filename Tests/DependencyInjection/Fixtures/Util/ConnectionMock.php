@@ -5,7 +5,7 @@ namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures
 use Doctrine\DBAL\Connection;
 
 /**
- * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
+ * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
 class ConnectionMock extends Connection
 {
