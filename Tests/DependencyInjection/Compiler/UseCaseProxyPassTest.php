@@ -12,6 +12,7 @@ use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\PDOTransactionSpy;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecuritySpy;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxy;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
@@ -32,7 +33,11 @@ class UseCaseProxyPassTest extends AbstractDependencyInjectionTest
      */
     public function WithoutExistingReaderGetUseCaseTagged_ReturnProxy()
     {
-        $this->initContainer();
+        $this->container = new ContainerBuilder();
+
+        $this->initUseCaseBundle();
+        $this->initServiceLoader();
+        $this->initConfigLoader();
         $this->container->removeDefinition('annotation_reader');
         $this->container->compile();
 

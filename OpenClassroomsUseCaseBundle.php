@@ -16,6 +16,6 @@ class OpenClassroomsUseCaseBundle extends Bundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new UseCaseProxyPass(), PassConfig::TYPE_AFTER_REMOVING);
+        $container->addCompilerPass(new UseCaseProxyPass(), PassConfig::TYPE_BEFORE_REMOVING);
     }
 }

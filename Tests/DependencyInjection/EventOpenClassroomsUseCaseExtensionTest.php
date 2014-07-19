@@ -25,7 +25,7 @@ class EventOpenClassroomsUseCaseExtensionTest extends AbstractDependencyInjectio
     /**
      * @test
      * @expectedException \OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventIsNotDefinedException
-     * @expectedExceptionMessage EventSender should be defined for use case: openclassrooms.tests.use_cases.configuration_event_use_case_stub. Default EventSender: 'event_dispatcher' is not defined.
+     * @expectedExceptionMessage EventSender should be defined for use case: OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub. Default EventSender: 'event_dispatcher' is not defined.
      */
     public function WithDefaultConfigurationWithoutEvent_EventUseCase_ThrowException()
     {
