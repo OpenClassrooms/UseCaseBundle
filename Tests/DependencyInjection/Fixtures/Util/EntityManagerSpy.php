@@ -46,7 +46,8 @@ class EntityManagerSpy extends EntityManager
         $this->conn->commit();
     }
 
-    public function rollback(){
+    public function rollback()
+    {
         $this->conn->rollback();
     }
 }

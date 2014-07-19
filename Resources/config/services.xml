@@ -6,10 +6,22 @@
         <parameter key="openclassrooms.use_case.event_adapter_factory.class">OpenClassrooms\Bundle\UseCaseBundle\Services\Event\Impl\EventAdapterFactoryImpl</parameter>
         <parameter key="openclassrooms.use_case.use_case_event_builder.class">OpenClassrooms\Bundle\UseCaseBundle\Services\Event\Impl\UseCaseEventBuilderImpl</parameter>
         <parameter key="openclassrooms.use_case.event_factory.class">OpenClassrooms\Bundle\UseCaseBundle\Services\Event\Impl\EventFactoryImpl</parameter>
+        <parameter key="openclassrooms.use_case.use_case_proxy_factory.class">OpenClassrooms\Bundle\UseCaseBundle\Services\Proxy\Impl\UseCaseProxyFactoryImpl</parameter>
     </parameters>
 
     <services>
         <service id="openclassrooms.use_case.use_case_proxy_builder" class="%openclassrooms.use_case.use_case_proxy_builder.class%"/>
+        <service id="openclassrooms.use_case.use_case_proxy_factory" class="%openclassrooms.use_case.use_case_proxy_factory.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setReader">
+                <argument type="service" id="annotation_reader"/>
+            </call>
+            <call method="setUseCaseProxyBuilder">
+                <argument type="service" id="openclassrooms.use_case.use_case_proxy_builder"/>
+            </call>
+        </service>
         <service id="openclassrooms.use_case.security_factory" class="%openclassrooms.use_case.security_factory.class%"/>
         <service id="openclassrooms.use_case.transaction_factory" class="%openclassrooms.use_case.transaction_factory.class%"/>
         <service id="openclassrooms.use_case.event_adapter_factory" class="%openclassrooms.use_case.event_adapter_factory.class%"/>

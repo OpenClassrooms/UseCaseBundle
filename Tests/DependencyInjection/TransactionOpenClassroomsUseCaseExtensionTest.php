@@ -25,7 +25,7 @@ class TransactionOpenClassroomsUseCaseExtensionTest extends AbstractDependencyIn
     /**
      * @test
      * @expectedException \OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\TransactionIsNotDefinedException
-     * @expectedExceptionMessage Transaction should be defined for use case: openclassrooms.tests.use_cases.configuration_transaction_use_case_stub. Default entity manager: 'doctrine.orm.entity_manager' is not defined.
+     * @expectedExceptionMessage Transaction should be defined for use case: OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub. Default entity manager: 'doctrine.orm.entity_manager' is not defined.
      */
     public function WithDefaultConfigurationWithoutTransaction_TransactionUseCase_ThrowException()
     {
