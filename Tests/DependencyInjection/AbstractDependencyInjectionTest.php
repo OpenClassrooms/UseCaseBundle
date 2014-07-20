@@ -117,7 +117,7 @@ abstract class AbstractDependencyInjectionTest extends \PHPUnit_Framework_TestCa
     {
         $cacheExtension = new OpenClassroomsCacheExtension();
         $this->container->registerExtension($cacheExtension);
-        $this->container->loadFromExtension('openclassrooms_cache');
+        $this->container->loadFromExtension('open_classrooms_cache');
 
         $cacheBundle = new OpenClassroomsCacheBundle();
         $cacheBundle->build($this->container);

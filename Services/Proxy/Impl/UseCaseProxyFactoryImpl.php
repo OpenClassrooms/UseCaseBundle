@@ -19,7 +19,6 @@ use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxyBuild
 use OpenClassrooms\UseCase\BusinessRules\Requestors\UseCase;
 use OpenClassrooms\UseCase\Application\Services\Security\Security;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
@@ -139,7 +138,7 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
         } elseif ($this->container->has('openclassrooms.cache.cache')) {
             $cache = $this->container->get('openclassrooms.cache.cache');
         } else {
-            throw new CacheIsNotDefinedException('Default cache is not defined. Have you configured openclassrooms_cache ?');
+            throw new CacheIsNotDefinedException('Default cache is not defined. Have you configured open_classrooms_cache ?');
         }
 
         return $cache;
