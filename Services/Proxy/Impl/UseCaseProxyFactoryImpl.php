@@ -20,6 +20,7 @@ use OpenClassrooms\UseCase\BusinessRules\Requestors\UseCase;
 use OpenClassrooms\UseCase\Application\Services\Security\Security;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use OpenClassrooms\UseCase\Application\Annotations\Security as SecurityAnnotation;
@@ -33,7 +34,7 @@ use OpenClassrooms\UseCase\Application\Annotations\Event as EventAnnotation;
 class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
 {
     /**
-     * @var Container
+     * @var ContainerInterface
      */
     private $container;
 
@@ -220,7 +221,7 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
         $this->builder = $builder;
     }
 
-    public function setContainer(Container $container)
+    public function setContainer(ContainerInterface $container)
     {
         $this->container = $container;
     }
