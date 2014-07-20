@@ -2,7 +2,6 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Proxy\Impl;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\Persistence\ObjectManager;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Proxy\UseCaseProxyFactory;
