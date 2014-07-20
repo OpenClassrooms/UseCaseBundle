@@ -226,7 +226,7 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
         $this->container = $container;
     }
 
-    public function setReader(AnnotationReader $reader)
+    public function setReader(Reader $reader)
     {
         $this->reader = $reader;
     }
