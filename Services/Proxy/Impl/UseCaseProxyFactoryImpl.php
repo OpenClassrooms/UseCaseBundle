@@ -15,6 +15,7 @@ use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventF
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventIsNotDefinedException;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\SecurityIsNotDefinedException;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\TransactionIsNotDefinedException;
+use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Impl\UseCaseProxyBuilderImpl;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxyBuilder;
 use OpenClassrooms\UseCase\BusinessRules\Requestors\UseCase;
 use OpenClassrooms\UseCase\Application\Services\Security\Security;
@@ -46,6 +47,11 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
      * @var UseCaseProxyBuilder
      */
     private $builder;
+
+    public function __construct()
+    {
+        $this->builder = new UseCaseProxyBuilderImpl();
+    }
 
     public function create(UseCase $useCase, $tagParameters)
     {
@@ -213,11 +219,6 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
 
         return $eventFactory;
 
-    }
-
-    public function setUseCaseProxyBuilder(UseCaseProxyBuilder $builder)
-    {
-        $this->builder = $builder;
     }
 
     public function setContainer(ContainerInterface $container)

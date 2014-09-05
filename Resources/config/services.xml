@@ -1,6 +1,5 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="openclassrooms.use_case.use_case_proxy_builder.class">OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Impl\UseCaseProxyBuilderImpl</parameter>
         <parameter key="openclassrooms.use_case.security_factory.class">OpenClassrooms\Bundle\UseCaseBundle\Services\Security\Impl\SecurityFactoryImpl</parameter>
         <parameter key="openclassrooms.use_case.transaction_factory.class">OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\TransactionFactoryImpl</parameter>
         <parameter key="openclassrooms.use_case.event_adapter_factory.class">OpenClassrooms\Bundle\UseCaseBundle\Services\Event\Impl\EventAdapterFactoryImpl</parameter>
@@ -10,16 +9,12 @@
     </parameters>
 
     <services>
-        <service id="openclassrooms.use_case.use_case_proxy_builder" class="%openclassrooms.use_case.use_case_proxy_builder.class%"/>
-        <service id="openclassrooms.use_case.use_case_proxy_factory" class="%openclassrooms.use_case.use_case_proxy_factory.class%">
+        <service id="openclassrooms.use_case.use_case_proxy_factory" class="%openclassrooms.use_case.use_case_proxy_factory.class%" scope="prototype">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
             <call method="setReader">
                 <argument type="service" id="annotation_reader"/>
-            </call>
-            <call method="setUseCaseProxyBuilder">
-                <argument type="service" id="openclassrooms.use_case.use_case_proxy_builder"/>
             </call>
         </service>
         <service id="openclassrooms.use_case.security_factory" class="%openclassrooms.use_case.security_factory.class%"/>
