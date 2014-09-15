@@ -29,7 +29,7 @@
         <service id="openclassrooms.use_case.paginated_use_case_response_builder" class="OpenClassrooms\UseCase\Application\Responder\PaginatedUseCaseResponseBuilderImpl"/>
         <service id="openclassrooms.use_case.paginated_use_case_response_factory" class="OpenClassrooms\UseCase\Application\Responder\PaginatedUseCaseResponseFactoryImpl">
             <call method="setPaginatedUseCaseResponseBuilder">
-                <argument id="openclassrooms.use_case.paginated_use_case_response_builder"/>
+                <argument type="service" id="openclassrooms.use_case.paginated_use_case_response_builder"/>
             </call>
         </service>
     </services>
