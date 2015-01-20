@@ -26,5 +26,4 @@ class EventDispatcherEventAdapter implements EventSender
         /** @var Event $event */
         $this->eventDispatcher->dispatch($eventName, $event);
     }
-
 }

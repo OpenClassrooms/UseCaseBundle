@@ -11,7 +11,6 @@ use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
  */
 class EntityManagerTransactionAdapter implements Transaction
 {
-
     /**
      * @var EntityManagerInterface
      */
@@ -20,7 +19,6 @@ class EntityManagerTransactionAdapter implements Transaction
     public function __construct(ObjectManager $em)
     {
         $this->em = $em;
-
     }
 
     /**

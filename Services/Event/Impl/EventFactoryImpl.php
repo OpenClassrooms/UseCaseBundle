@@ -28,8 +28,7 @@ class EventFactoryImpl implements EventFactory
         UseCaseRequest $useCaseRequest = null,
         UseCaseResponse $useCaseResponse = null,
         \Exception $exception = null
-    )
-    {
+    ) {
         return $this->useCaseEventBuilder
             ->create()
             ->named($eventName)

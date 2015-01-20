@@ -33,5 +33,4 @@ class EventDispatcherSpy extends EventDispatcher
 
         parent::dispatch($eventName, $event);
     }
-
 }

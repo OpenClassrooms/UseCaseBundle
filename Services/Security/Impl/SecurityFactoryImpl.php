@@ -18,5 +18,4 @@ class SecurityFactoryImpl implements SecurityFactory
     {
         return new SecurityContextSecurityAdapter($securityContext);
     }
-
 }

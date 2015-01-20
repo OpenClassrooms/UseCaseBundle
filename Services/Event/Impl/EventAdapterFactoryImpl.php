@@ -18,5 +18,4 @@ class EventAdapterFactoryImpl implements EventAdapterFactory
     {
         return new EventDispatcherEventAdapter($eventDispatcher);
     }
-
 }

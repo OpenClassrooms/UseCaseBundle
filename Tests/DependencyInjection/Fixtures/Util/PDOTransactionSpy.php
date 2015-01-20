@@ -9,7 +9,6 @@ use OpenClassrooms\UseCase\Application\Services\Transaction\Impl\PDOTransactionA
  */
 class PDOTransactionSpy extends PDOTransactionAdapter
 {
-
     /**
      * @var bool
      */

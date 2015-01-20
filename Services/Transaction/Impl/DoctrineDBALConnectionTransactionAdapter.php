@@ -10,7 +10,6 @@ use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
  */
 class DoctrineDBALConnectionTransactionAdapter implements Transaction
 {
-
     /**
      * @var Connection
      */

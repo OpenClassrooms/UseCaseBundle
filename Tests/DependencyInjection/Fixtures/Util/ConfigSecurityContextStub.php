@@ -7,5 +7,4 @@ namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures
  */
 class ConfigSecurityContextStub extends SecurityContextSpy
 {
-
 }

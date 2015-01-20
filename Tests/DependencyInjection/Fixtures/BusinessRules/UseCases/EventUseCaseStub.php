@@ -21,5 +21,4 @@ class EventUseCaseStub extends UseCaseStub
     {
         return parent::execute($useCaseRequest);
     }
-
 }

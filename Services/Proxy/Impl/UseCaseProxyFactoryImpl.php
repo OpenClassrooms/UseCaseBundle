@@ -85,24 +85,24 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
         } catch (SecurityIsNotDefinedException $sinde) {
             throw new SecurityIsNotDefinedException(
                 'Security should be defined for use case: '
-                . get_class($useCase) . '. '
-                . $sinde->getMessage());
+                .get_class($useCase).'. '
+                .$sinde->getMessage());
         } catch (CacheIsNotDefinedException $cinde) {
             throw new CacheIsNotDefinedException('Cache should be defined for use case: '
-                . get_class($useCase) . '. '
-                . $cinde->getMessage());
+                .get_class($useCase).'. '
+                .$cinde->getMessage());
         } catch (TransactionIsNotDefinedException $tinde) {
             throw new TransactionIsNotDefinedException('Transaction should be defined for use case: '
-                . get_class($useCase) . '. '
-                . $tinde->getMessage());
+                .get_class($useCase).'. '
+                .$tinde->getMessage());
         } catch (EventIsNotDefinedException $einde) {
             throw new EventIsNotDefinedException('EventSender should be defined for use case: '
-                . get_class($useCase) . '. '
-                . $einde->getMessage());
+                .get_class($useCase).'. '
+                .$einde->getMessage());
         } catch (EventFactoryIsNotDefinedException $efinde) {
             throw new EventFactoryIsNotDefinedException('EventFactory should be defined for use case: '
-                . get_class($useCase) . '. '
-                . $efinde->getMessage());
+                .get_class($useCase).'. '
+                .$efinde->getMessage());
         }
     }
 
@@ -118,7 +118,7 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
                 'openclassrooms.use_case.default_security_context'
             );
             if (!$this->container->has($defaultSecurityContextId)) {
-                throw new SecurityIsNotDefinedException('Default security context: \'' . $defaultSecurityContextId . '\' is not defined.');
+                throw new SecurityIsNotDefinedException('Default security context: \''.$defaultSecurityContextId.'\' is not defined.');
             }
             $security = $this->container->get(
                 $this->container->getParameter('openclassrooms.use_case.default_security_context')
@@ -138,7 +138,7 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
      */
     private function buildCache(array $tagParameters)
     {
-        if (isset ($tagParameters['cache'])) {
+        if (isset($tagParameters['cache'])) {
             /** @var Cache $cache */
             $cache = $this->container->get($tagParameters['cache']);
         } elseif ($this->container->has('openclassrooms.cache.cache')) {
@@ -160,7 +160,7 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
         } else {
             $defaultEntityManagerId = $this->container->getParameter('openclassrooms.use_case.default_entity_manager');
             if (!$this->container->has($defaultEntityManagerId)) {
-                throw new TransactionIsNotDefinedException('Default entity manager: \'' . $defaultEntityManagerId . '\' is not defined.');
+                throw new TransactionIsNotDefinedException('Default entity manager: \''.$defaultEntityManagerId.'\' is not defined.');
             }
             $transaction = $this->container->get(
                 $this->container->getParameter('openclassrooms.use_case.default_entity_manager')
@@ -185,7 +185,7 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
         } else {
             $defaultEventId = $this->container->getParameter('openclassrooms.use_case.default_event_sender');
             if (!$this->container->has($defaultEventId)) {
-                throw new EventIsNotDefinedException('Default EventSender: \'' . $defaultEventId . '\' is not defined.');
+                throw new EventIsNotDefinedException('Default EventSender: \''.$defaultEventId.'\' is not defined.');
             }
             $event = $this->container->get(
                 $this->container->getParameter('openclassrooms.use_case.default_event_sender')
@@ -210,7 +210,7 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
         } else {
             $defaultEventFactoryId = $this->container->getParameter('openclassrooms.use_case.default_event_factory');
             if (!$this->container->has($defaultEventFactoryId)) {
-                throw new EventFactoryIsNotDefinedException('Default EventFactory: \'' . $defaultEventFactoryId . '\' is not defined.');
+                throw new EventFactoryIsNotDefinedException('Default EventFactory: \''.$defaultEventFactoryId.'\' is not defined.');
             }
             $eventFactory = $this->container->get(
                 $this->container->getParameter('openclassrooms.use_case.default_event_factory')
@@ -218,7 +218,6 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
         }
 
         return $eventFactory;
-
     }
 
     public function setContainer(ContainerInterface $container)

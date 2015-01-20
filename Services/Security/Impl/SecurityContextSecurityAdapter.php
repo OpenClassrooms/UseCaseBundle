@@ -30,5 +30,4 @@ class SecurityContextSecurityAdapter implements Security
             throw new AccessDeniedException();
         }
     }
-
 }

@@ -7,14 +7,11 @@ use OpenClassrooms\Bundle\CacheBundle\OpenClassroomsCacheBundle;
 use OpenClassrooms\Bundle\UseCaseBundle\DependencyInjection\OpenClassroomsUseCaseExtension;
 use OpenClassrooms\Bundle\UseCaseBundle\OpenClassroomsUseCaseBundle;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\CacheUseCaseStub;
-use
-    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseRequestStub;
-use
-    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseResponseStub;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseRequestStub;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseResponseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\SecurityUseCaseStub;
-use
-    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\CacheSpy;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\ConnectionMock;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventDispatcherSpy;
@@ -67,13 +64,13 @@ abstract class AbstractDependencyInjectionTest extends \PHPUnit_Framework_TestCa
 
     protected function initServiceLoader()
     {
-        $this->serviceLoader = new XmlFileLoader($this->container, new FileLocator(__DIR__ . '/Fixtures/Resources/config'));
+        $this->serviceLoader = new XmlFileLoader($this->container, new FileLocator(__DIR__.'/Fixtures/Resources/config'));
         $this->serviceLoader->load('services.xml');
     }
 
     protected function initConfigLoader()
     {
-        $this->configLoader = new YamlFileLoader($this->container, new FileLocator(__DIR__ . '/Fixtures/Resources/config/'));
+        $this->configLoader = new YamlFileLoader($this->container, new FileLocator(__DIR__.'/Fixtures/Resources/config/'));
         $this->configLoader->load('DefaultConfiguration.yml');
     }
 

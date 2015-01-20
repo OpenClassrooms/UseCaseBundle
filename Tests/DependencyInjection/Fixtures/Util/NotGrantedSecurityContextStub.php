@@ -17,7 +17,7 @@ class NotGrantedSecurityContextStub implements SecurityContextInterface
      */
     public function getToken()
     {
-        return null;
+        return;
     }
 
     /**
@@ -27,7 +27,7 @@ class NotGrantedSecurityContextStub implements SecurityContextInterface
      */
     public function setToken(TokenInterface $token = null)
     {
-        return null;
+        return;
     }
 
     /**
@@ -42,5 +42,4 @@ class NotGrantedSecurityContextStub implements SecurityContextInterface
     {
         return false;
     }
-
 }
