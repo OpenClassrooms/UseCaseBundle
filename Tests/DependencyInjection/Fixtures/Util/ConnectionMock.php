@@ -27,7 +27,7 @@ class ConnectionMock extends Connection
     /**
      * @var int
      */
-    private static $called = 0;
+    public static $transactionNumber = 0;
 
     public function __construct()
     {
@@ -43,17 +43,20 @@ class ConnectionMock extends Connection
 
     public function beginTransaction()
     {
+        self::$transactionNumber++;
         self::$transactionBegin = true;
     }
 
     public function commit()
     {
         self::$committed = true;
+        ConnectionMock::$transactionNumber--;
     }
 
     public function rollback()
     {
         self::$rollBacked = true;
+        ConnectionMock::$transactionNumber--;
     }
 
     /**
@@ -61,6 +64,6 @@ class ConnectionMock extends Connection
      */
     public function isTransactionActive()
     {
-        return 0 !== self::$called;
+        return self::$transactionNumber > 0;
     }
 }

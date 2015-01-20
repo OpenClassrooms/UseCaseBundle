@@ -4,10 +4,8 @@ namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\Services\Event\Impl;
 
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Event\Impl\EventFactoryImpl;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Event\Impl\UseCaseEventBuilderImpl;
-use
-    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseRequestStub;
-use
-    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseResponseStub;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseRequestStub;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseResponseStub;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>

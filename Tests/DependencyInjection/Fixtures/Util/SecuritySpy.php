@@ -18,7 +18,6 @@ class SecuritySpy implements Security
     {
         self::$checked = true;
 
-        return null;
+        return;
     }
-
 }

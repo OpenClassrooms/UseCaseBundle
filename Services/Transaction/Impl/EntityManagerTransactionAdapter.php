@@ -19,7 +19,6 @@ class EntityManagerTransactionAdapter implements Transaction
     public function __construct(ObjectManager $em)
     {
         $this->em = $em;
-
     }
 
     /**
@@ -27,9 +26,7 @@ class EntityManagerTransactionAdapter implements Transaction
      */
     public function beginTransaction()
     {
-        if (!$this->isTransactionActive()) {
-            $this->em->beginTransaction();
-        }
+        $this->em->beginTransaction();
 
         return true;
     }

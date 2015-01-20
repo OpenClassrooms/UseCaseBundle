@@ -20,5 +20,4 @@ class TransactionUseCaseStub extends UseCaseStub
     {
         return parent::execute($useCaseRequest);
     }
-
 }

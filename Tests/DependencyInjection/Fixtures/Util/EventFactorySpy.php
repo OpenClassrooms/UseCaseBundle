@@ -23,14 +23,11 @@ class EventFactorySpy implements EventFactory
         UseCaseRequest $useCaseRequest = null,
         UseCaseResponse $useCaseResponse = null,
         \Exception $exception = null
-    )
-    {
+    ) {
         if (EventUseCaseStub::EVENT_NAME === $eventName) {
             return new Event();
         } else {
             throw new InvalidEventNameException($eventName);
         }
-
     }
-
 }

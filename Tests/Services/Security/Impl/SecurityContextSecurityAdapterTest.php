@@ -29,5 +29,4 @@ class SecurityContextSecurityAdapterTest extends \PHPUnit_Framework_TestCase
         $security = new SecurityContextSecurityAdapter(new NotGrantedSecurityContextStub());
         $security->checkAccess(array());
     }
-
 }

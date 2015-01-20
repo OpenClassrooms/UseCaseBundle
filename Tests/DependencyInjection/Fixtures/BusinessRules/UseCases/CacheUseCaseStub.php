@@ -19,5 +19,4 @@ class CacheUseCaseStub extends UseCaseStub
     {
         return parent::execute($useCaseRequest);
     }
-
 }

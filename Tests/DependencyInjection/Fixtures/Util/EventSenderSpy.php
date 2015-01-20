@@ -29,5 +29,4 @@ class EventSenderSpy implements EventSender
         self::$eventName = $eventName;
         self::$sent = true;
     }
-
 }

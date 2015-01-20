@@ -22,7 +22,7 @@ class SecurityContextSpy implements SecurityContextInterface
      */
     public function getToken()
     {
-        return null;
+        return;
     }
 
     /**
@@ -32,7 +32,7 @@ class SecurityContextSpy implements SecurityContextInterface
      */
     public function setToken(TokenInterface $token = null)
     {
-        return null;
+        return;
     }
 
     /**
@@ -49,5 +49,4 @@ class SecurityContextSpy implements SecurityContextInterface
 
         return true;
     }
-
 }

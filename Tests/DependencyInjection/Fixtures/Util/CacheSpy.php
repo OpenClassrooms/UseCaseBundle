@@ -23,5 +23,4 @@ class CacheSpy extends CacheImpl
 
         return parent::save($id, $data, $lifeTime);
     }
-
 }

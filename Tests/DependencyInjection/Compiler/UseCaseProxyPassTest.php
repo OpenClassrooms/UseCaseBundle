@@ -5,8 +5,7 @@ namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Compiler
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\AbstractDependencyInjectionTest;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\SecurityUseCaseStub;
-use
-    OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\UseCaseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventSenderSpy;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\PDOTransactionSpy;
@@ -102,7 +101,6 @@ class UseCaseProxyPassTest extends AbstractDependencyInjectionTest
         $useCaseProxy = $this->container->get('openclassrooms.tests.use_cases.entity_manager_transaction_use_case_stub');
 
         $this->assertTransactionUseCaseProxy($useCaseProxy);
-
     }
 
     /**

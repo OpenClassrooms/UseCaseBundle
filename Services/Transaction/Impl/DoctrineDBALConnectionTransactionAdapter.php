@@ -25,9 +25,7 @@ class DoctrineDBALConnectionTransactionAdapter implements Transaction
      */
     public function beginTransaction()
     {
-        if (!$this->isTransactionActive()) {
-            $this->connection->beginTransaction();
-        }
+        $this->connection->beginTransaction();
 
         return true;
     }

@@ -2,8 +2,8 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\DBAL\Connection;
+use Doctrine\ORM\EntityManager;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
@@ -16,7 +16,7 @@ class EntityManagerSpy extends EntityManager
     public static $flushed = false;
 
     /**
-     * @var Connection
+     * @var Connection|ConnectionMock
      */
     protected $conn;
 

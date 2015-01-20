@@ -9,5 +9,4 @@ use OpenClassrooms\UseCase\BusinessRules\Requestors\UseCaseRequest;
  */
 class UseCaseRequestStub implements UseCaseRequest
 {
-
 }
