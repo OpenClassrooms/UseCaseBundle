@@ -30,6 +30,7 @@ class EntityManagerTransactionAdapterTest extends \PHPUnit_Framework_TestCase
         $transactionBegin = $this->transaction->beginTransaction();
         $this->assertTrue($transactionBegin);
         $this->assertTrue(ConnectionMock::$transactionBegin);
+        $this->assertTrue($this->transaction->isTransactionActive());
     }
 
     /**
@@ -41,6 +42,7 @@ class EntityManagerTransactionAdapterTest extends \PHPUnit_Framework_TestCase
         $transactionBegin = $this->transaction->beginTransaction();
         $this->assertTrue($transactionBegin);
         $this->assertTrue(ConnectionMock::$transactionBegin);
+        $this->assertTrue($this->transaction->isTransactionActive());
     }
 
     /**
@@ -53,7 +55,9 @@ class EntityManagerTransactionAdapterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($committed);
         $this->assertTrue(EntityManagerSpy::$flushed);
         $this->assertTrue(ConnectionMock::$committed);
+        $this->assertFalse($this->transaction->isTransactionActive());
     }
+
     /**
      * @test
      */
@@ -63,10 +67,12 @@ class EntityManagerTransactionAdapterTest extends \PHPUnit_Framework_TestCase
         $rollBacked = $this->transaction->rollBack();
         $this->assertTrue($rollBacked);
         $this->assertTrue(ConnectionMock::$rollBacked);
+        $this->assertFalse($this->transaction->isTransactionActive());
     }
 
     protected function setUp()
     {
+        ConnectionMock::$transactionNumber = 0;
         $this->entityManager = new EntityManagerSpy();
         $this->transaction = new EntityManagerTransactionAdapter($this->entityManager);
     }

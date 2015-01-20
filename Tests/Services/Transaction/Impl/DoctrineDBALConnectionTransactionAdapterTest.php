@@ -30,6 +30,7 @@ class DoctrineDBALConnectionTransactionAdapterTest extends \PHPUnit_Framework_Te
         $transactionBegin = $this->transaction->beginTransaction();
         $this->assertTrue($transactionBegin);
         $this->assertTrue(ConnectionMock::$transactionBegin);
+        $this->assertTrue($this->transaction->isTransactionActive());
     }
 
     /**
@@ -41,6 +42,7 @@ class DoctrineDBALConnectionTransactionAdapterTest extends \PHPUnit_Framework_Te
         $transactionBegin = $this->transaction->beginTransaction();
         $this->assertTrue($transactionBegin);
         $this->assertTrue(ConnectionMock::$transactionBegin);
+        $this->assertTrue($this->transaction->isTransactionActive());
     }
 
     /**
@@ -52,6 +54,7 @@ class DoctrineDBALConnectionTransactionAdapterTest extends \PHPUnit_Framework_Te
         $committed = $this->transaction->commit();
         $this->assertTrue($committed);
         $this->assertTrue(ConnectionMock::$committed);
+        $this->assertFalse($this->transaction->isTransactionActive());
     }
     /**
      * @test
@@ -62,10 +65,12 @@ class DoctrineDBALConnectionTransactionAdapterTest extends \PHPUnit_Framework_Te
         $rollBacked = $this->transaction->rollBack();
         $this->assertTrue($rollBacked);
         $this->assertTrue(ConnectionMock::$rollBacked);
+        $this->assertFalse($this->transaction->isTransactionActive());
     }
 
     protected function setUp()
     {
+        ConnectionMock::$transactionNumber = 0;
         $this->entityManager = new EntityManagerSpy();
         $this->transaction = new DoctrineDBALConnectionTransactionAdapter($this->entityManager->getConnection());
     }
