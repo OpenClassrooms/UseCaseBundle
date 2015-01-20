@@ -10,6 +10,7 @@ use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
  */
 class DoctrineDBALConnectionTransactionAdapter implements Transaction
 {
+
     /**
      * @var Connection
      */
@@ -25,9 +26,7 @@ class DoctrineDBALConnectionTransactionAdapter implements Transaction
      */
     public function beginTransaction()
     {
-        if (!$this->isTransactionActive()) {
-            $this->connection->beginTransaction();
-        }
+        $this->connection->beginTransaction();
 
         return true;
     }

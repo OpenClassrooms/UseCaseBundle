@@ -11,6 +11,7 @@ use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
  */
 class EntityManagerTransactionAdapter implements Transaction
 {
+
     /**
      * @var EntityManagerInterface
      */
@@ -27,9 +28,7 @@ class EntityManagerTransactionAdapter implements Transaction
      */
     public function beginTransaction()
     {
-        if (!$this->isTransactionActive()) {
-            $this->em->beginTransaction();
-        }
+        $this->em->beginTransaction();
 
         return true;
     }
