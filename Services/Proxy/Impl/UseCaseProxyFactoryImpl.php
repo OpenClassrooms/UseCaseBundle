@@ -76,7 +76,7 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
                 }
                 if ($annotation instanceof EventAnnotation) {
                     $this->builder
-                        ->withEvent($this->buildEvent($tagParameters))
+                        ->withEventSender($this->buildEvent($tagParameters))
                         ->withEventFactory($this->buildEventFactory($tagParameters));
                 }
             }
