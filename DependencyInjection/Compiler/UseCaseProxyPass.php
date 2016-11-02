@@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
@@ -53,8 +54,10 @@ class UseCaseProxyPass implements CompilerPassInterface
     {
         $definition = $this->container->findDefinition($taggedServiceName);
         $factoryDefinition = new Definition();
-        $factoryDefinition->setFactoryService('openclassrooms.use_case.use_case_proxy_factory');
-        $factoryDefinition->setFactoryMethod('create');
+        $factoryDefinition->setFactory([
+            new Reference('openclassrooms.use_case.use_case_proxy_factory'),
+            'create'
+        ]);
         $factoryDefinition->setArguments(array($definition, $tagParameters[0]));
         $this->container->setDefinition($taggedServiceName, $factoryDefinition);
     }

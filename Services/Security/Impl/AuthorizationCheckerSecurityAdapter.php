@@ -3,22 +3,23 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Security\Impl;
 
 use OpenClassrooms\UseCase\Application\Services\Security\Security;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class SecurityContextSecurityAdapter implements Security
+class AuthorizationCheckerSecurityAdapter implements Security
 {
     /**
-     * @var SecurityContextInterface
+     * @var AuthorizationCheckerInterface
      */
-    protected $securityContext;
+    protected $authorizationChecker;
 
-    public function __construct(SecurityContextInterface $securityContext)
+    public function __construct(AuthorizationCheckerInterface $authorizationChecker)
     {
-        $this->securityContext = $securityContext;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     /**
@@ -26,7 +27,7 @@ class SecurityContextSecurityAdapter implements Security
      */
     public function checkAccess($attributes, $object = null)
     {
-        if (!$this->securityContext->isGranted($attributes, $object)) {
+        if (!$this->authorizationChecker->isGranted($attributes, $object)) {
             throw new AccessDeniedException();
         }
     }

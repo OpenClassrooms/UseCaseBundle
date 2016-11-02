@@ -15,7 +15,7 @@ use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Busin
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\CacheSpy;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\ConnectionMock;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EventDispatcherSpy;
-use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecurityContextSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\AuthorizationCheckerSpy;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxy;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -78,7 +78,7 @@ abstract class AbstractDependencyInjectionTest extends \PHPUnit_Framework_TestCa
     {
         $this->assertUseCaseProxy($useCaseProxy);
         $this->assertEquals(new SecurityUseCaseStub(), $useCaseProxy->getUseCase());
-        $this->assertTrue(SecurityContextSpy::$isGranted);
+        $this->assertTrue(AuthorizationCheckerSpy::$isGranted);
     }
 
     protected function assertUseCaseProxy(UseCaseProxy $useCaseProxy)

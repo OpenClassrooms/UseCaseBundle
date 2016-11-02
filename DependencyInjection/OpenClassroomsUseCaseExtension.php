@@ -29,7 +29,7 @@ class OpenClassroomsUseCaseExtension extends Extension
 
         $config = $this->processConfiguration(new Configuration(), $config);
 
-        $container->setParameter('openclassrooms.use_case.default_security_context', $config['security']);
+        $container->setParameter('openclassrooms.use_case.default_authorization_checker', $config['security']);
         $container->setParameter('openclassrooms.use_case.default_entity_manager', $config['transaction']);
         $container->setParameter('openclassrooms.use_case.default_event_sender', $config['event_sender']);
         $container->setParameter('openclassrooms.use_case.default_event_factory', $config['event_factory']);

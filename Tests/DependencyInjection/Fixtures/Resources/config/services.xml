@@ -1,7 +1,7 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="openclassrooms.tests.util.security_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecuritySpy</parameter>
-        <parameter key="openclassrooms.tests.util.security_context_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\SecurityContextSpy</parameter>
+        <parameter key="openclassrooms.tests.util.authorization_checker_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\AuthorizationCheckerSpy</parameter>
         <parameter key="openclassrooms.tests.util.cache_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\CacheSpy</parameter>
         <parameter key="openclassrooms.tests.util.entity_manager_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy</parameter>
         <parameter key="openclassrooms.tests.util.pdo_transaction_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\PDOTransactionSpy</parameter>
@@ -18,7 +18,7 @@
     <services>
         <service id="annotation_reader" class="Doctrine\Common\Annotations\AnnotationReader"/>
         <service id="openclassrooms.tests.util.security_stub" class="%openclassrooms.tests.util.security_stub.class%"/>
-        <service id="openclassrooms.tests.util.security_context_stub" class="%openclassrooms.tests.util.security_context_stub.class%"/>
+        <service id="openclassrooms.tests.util.authorization_checker_stub" class="%openclassrooms.tests.util.authorization_checker_stub.class%"/>
         <service id="openclassrooms.tests.util.cache_stub" class="%openclassrooms.tests.util.cache_stub.class%"/>
         <service id="openclassrooms.tests.util.entity_manager_stub" class="%openclassrooms.tests.util.entity_manager_stub.class%"/>
         <service id="openclassrooms.tests.util.pdo_transaction_stub" class="%openclassrooms.tests.util.pdo_transaction_stub.class%"/>
@@ -33,8 +33,8 @@
         <service id="openclassrooms.tests.use_cases.security_use_case_stub" class="%openclassrooms.tests.use_cases.security_use_case_stub.class%">
             <tag name="openclassrooms.use_case" security="openclassrooms.tests.util.security_stub"/>
         </service>
-        <service id="openclassrooms.tests.use_cases.security_context_security_use_case_stub" class="%openclassrooms.tests.use_cases.security_use_case_stub.class%">
-            <tag name="openclassrooms.use_case" security="openclassrooms.tests.util.security_context_stub"/>
+        <service id="openclassrooms.tests.use_cases.security_authorization_checker_use_case_stub" class="%openclassrooms.tests.use_cases.security_use_case_stub.class%">
+            <tag name="openclassrooms.use_case" security="openclassrooms.tests.util.authorization_checker_stub"/>
         </service>
         <service id="openclassrooms.tests.use_cases.cache_use_case_stub" class="%openclassrooms.tests.use_cases.cache_use_case_stub.class%">
             <tag name="openclassrooms.use_case" cache="openclassrooms.tests.util.cache_stub"/>
