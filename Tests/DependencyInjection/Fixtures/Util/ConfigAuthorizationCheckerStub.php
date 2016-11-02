@@ -5,6 +5,6 @@ namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class ConfigSecurityContextStub extends SecurityContextSpy
+class ConfigAuthorizationCheckerStub extends AuthorizationCheckerSpy
 {
 }

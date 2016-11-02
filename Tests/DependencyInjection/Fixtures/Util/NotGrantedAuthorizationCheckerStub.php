@@ -3,18 +3,14 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class SecurityContextSpy implements SecurityContextInterface
+class NotGrantedAuthorizationCheckerStub implements AuthorizationCheckerInterface
 {
-    /**
-     * @var bool
-     */
-    public static $isGranted = false;
-
     /**
      * Returns the current security token.
      *
@@ -45,8 +41,6 @@ class SecurityContextSpy implements SecurityContextInterface
      */
     public function isGranted($attributes, $object = null)
     {
-        self::$isGranted = true;
-
-        return true;
+        return false;
     }
 }

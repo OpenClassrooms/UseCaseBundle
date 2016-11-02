@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('openclassrooms_use_case');
         $rootNode->children()
-                    ->scalarNode('security')->defaultValue('security.context')->end()
+                    ->scalarNode('security')->defaultValue('security.authorization_checker')->end()
                     ->scalarNode('transaction')->defaultValue('doctrine.orm.entity_manager')->end()
                     ->scalarNode('event_sender')->defaultValue('event_dispatcher')->end()
                     ->scalarNode('event_factory')->defaultValue('openclassrooms.use_case.event_factory')->end()

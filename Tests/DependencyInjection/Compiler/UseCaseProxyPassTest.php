@@ -73,10 +73,10 @@ class UseCaseProxyPassTest extends AbstractDependencyInjectionTest
     /**
      * @test
      */
-    public function SecurityContextSecurityUseCase_ReturnProxy()
+    public function SecurityAuthorizationCheckerUseCase_ReturnProxy()
     {
         /** @var UseCaseProxy $useCaseProxy */
-        $useCaseProxy = $this->container->get('openclassrooms.tests.use_cases.security_context_security_use_case_stub');
+        $useCaseProxy = $this->container->get('openclassrooms.tests.use_cases.security_authorization_checker_use_case_stub');
 
         $this->assertSecurityUseCaseProxy($useCaseProxy);
     }

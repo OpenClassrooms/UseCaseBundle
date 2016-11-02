@@ -22,6 +22,7 @@ use OpenClassrooms\UseCase\Application\Services\Security\Security;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use OpenClassrooms\UseCase\Application\Annotations\Security as SecurityAnnotation;
 use OpenClassrooms\UseCase\Application\Annotations\Cache as CacheAnnotation;
@@ -115,19 +116,19 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
             $security = $this->container->get($tagParameters['security']);
         } else {
             $defaultSecurityContextId = $this->container->getParameter(
-                'openclassrooms.use_case.default_security_context'
+                'openclassrooms.use_case.default_authorization_checker'
             );
             if (!$this->container->has($defaultSecurityContextId)) {
                 throw new SecurityIsNotDefinedException('Default security context: \''.$defaultSecurityContextId.'\' is not defined.');
             }
             $security = $this->container->get(
-                $this->container->getParameter('openclassrooms.use_case.default_security_context')
+                $this->container->getParameter('openclassrooms.use_case.default_authorization_checker')
             );
         }
-        if ($security instanceof SecurityContextInterface) {
+        if ($security instanceof AuthorizationCheckerInterface) {
             /** @var SecurityFactory $securityFactory */
             $securityFactory = $this->container->get('openclassrooms.use_case.security_factory');
-            $security = $securityFactory->createSecurityContextSecurity($security);
+            $security = $securityFactory->createAuthorizationCheckerSecurity($security);
         }
 
         return $security;
