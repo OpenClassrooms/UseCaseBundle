@@ -22,7 +22,7 @@
     "require": {
         "php": ">=5.5",
         "openclassrooms/use-case": "1.0.*@dev",
-        "openclassrooms/cache-bundle": "dev-symfony@dev",
+        "openclassrooms/cache-bundle": "dev-symfony3@dev",
         "openclassrooms/cache": "1.0.*@dev",
         "symfony/dependency-injection": "~2.7|~3.0",
         "symfony/config": "~2.7|~3.0",
