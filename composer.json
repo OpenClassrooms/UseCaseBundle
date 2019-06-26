@@ -20,24 +20,24 @@
         }
     },
     "require": {
-        "php": ">=5.5",
+        "php": ">=7.1",
         "openclassrooms/use-case": "1.0.*@dev",
-        "openclassrooms/cache-bundle": "1.0.*@dev",
+        "openclassrooms/cache-bundle": "2.0.*@dev",
         "openclassrooms/cache": "1.0.*@dev",
-        "symfony/dependency-injection": "~2.7|~4.3",
-        "symfony/config": "~2.7|~4.3",
-        "symfony/http-kernel": "~2.7|~4.3",
-        "symfony/security": "~2.7|~4.3",
+        "symfony/dependency-injection": "~3.4 || ~4.0",
+        "symfony/config": "~3.4 || ~4.0",
+        "symfony/http-kernel": "~3.4 || ~4.0",
+        "symfony/security": "~3.4 || ~4.0",
         "doctrine/orm": "~2.3",
-        "symfony/event-dispatcher": "~2.7|~4.3"
+        "symfony/event-dispatcher": "~3.4 || ~4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0 || ~5.0",
+        "phpunit/phpunit": "~7",
         "satooshi/php-coveralls": "~2.1"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }
