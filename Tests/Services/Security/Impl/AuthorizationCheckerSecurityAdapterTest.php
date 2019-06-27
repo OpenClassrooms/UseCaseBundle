@@ -3,13 +3,14 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\Services\Security\Impl;
 
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Security\Impl\AuthorizationCheckerSecurityAdapter;
-use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\NotGrantedAuthorizationCheckerStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\AuthorizationCheckerSpy;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\NotGrantedAuthorizationCheckerStub;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class AuthorizationCheckerSecurityAdapterTest extends \PHPUnit_Framework_TestCase
+class AuthorizationCheckerSecurityAdapterTest extends TestCase
 {
     /**
      * @test

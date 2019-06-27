@@ -6,15 +6,16 @@ use OpenClassrooms\Bundle\UseCaseBundle\Services\Event\Impl\EventFactoryImpl;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Event\Impl\UseCaseEventBuilderImpl;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseRequestStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\DTO\UseCaseResponseStub;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class EventFactoryTest extends \PHPUnit_Framework_TestCase
+class EventFactoryTest extends TestCase
 {
-    const EXPECTED_EXCEPTION_MESSAGE = 'exception message';
-
     const EXPECTED_EVENT_NAME = 'event_name';
+
+    const EXPECTED_EXCEPTION_MESSAGE = 'exception message';
 
     /**
      * @test

@@ -6,11 +6,12 @@ use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\EntityManagerT
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\ConnectionMock;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class EntityManagerTransactionAdapterTest extends \PHPUnit_Framework_TestCase
+class EntityManagerTransactionAdapterTest extends TestCase
 {
     /**
      * @var EntityManagerSpy
