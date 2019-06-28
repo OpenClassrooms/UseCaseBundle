@@ -1,7 +1,7 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <!--USE CASES WITH CONFIGURATION-->
-        <service id="openclassrooms.tests.use_cases.configuration_cache_use_case_stub" class="%openclassrooms.tests.use_cases.cache_use_case_stub.class%">
+        <service id="openclassrooms.tests.use_cases.configuration_cache_use_case_stub" class="%openclassrooms.tests.use_cases.cache_use_case_stub.class%" public="true">
             <tag name="openclassrooms.use_case"/>
         </service>
     </services>

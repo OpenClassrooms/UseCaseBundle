@@ -18,7 +18,7 @@
             </call>
         </service>
         <service id="openclassrooms.use_case.security_factory" class="%openclassrooms.use_case.security_factory.class%"/>
-        <service id="openclassrooms.use_case.transaction_factory" class="%openclassrooms.use_case.transaction_factory.class%"/>
+        <service id="openclassrooms.use_case.transaction_factory" class="%openclassrooms.use_case.transaction_factory.class%" public="true"/>
         <service id="openclassrooms.use_case.event_adapter_factory" class="%openclassrooms.use_case.event_adapter_factory.class%"/>
         <service id="openclassrooms.use_case.use_case_event_builder" class="%openclassrooms.use_case.use_case_event_builder.class%"/>
         <service id="openclassrooms.use_case.event_factory" class="%openclassrooms.use_case.event_factory.class%">

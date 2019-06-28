@@ -59,6 +59,7 @@ class UseCaseProxyPass implements CompilerPassInterface
             'create'
         ]);
         $factoryDefinition->setArguments(array($definition, $tagParameters[0]));
+        $factoryDefinition->setPublic($definition->isPublic());
         $this->container->setDefinition($taggedServiceName, $factoryDefinition);
     }
 }
