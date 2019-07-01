@@ -14,6 +14,7 @@ class AuthorizationCheckerSecurityAdapterTest extends TestCase
 {
     /**
      * @test
+     * @doesNotPerformAssertions
      */
     public function IsGranted_DonTThrowException()
     {
