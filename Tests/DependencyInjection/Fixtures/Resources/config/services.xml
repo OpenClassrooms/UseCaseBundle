@@ -17,38 +17,38 @@
     </parameters>
     <services>
         <service id="annotation_reader" class="Doctrine\Common\Annotations\AnnotationReader"/>
-        <service id="openclassrooms.tests.util.security_stub" class="%openclassrooms.tests.util.security_stub.class%"/>
-        <service id="openclassrooms.tests.util.authorization_checker_stub" class="%openclassrooms.tests.util.authorization_checker_stub.class%"/>
-        <service id="openclassrooms.tests.util.cache_stub" class="%openclassrooms.tests.util.cache_stub.class%"/>
-        <service id="openclassrooms.tests.util.entity_manager_stub" class="%openclassrooms.tests.util.entity_manager_stub.class%"/>
-        <service id="openclassrooms.tests.util.pdo_transaction_stub" class="%openclassrooms.tests.util.pdo_transaction_stub.class%"/>
-        <service id="openclassrooms.tests.util.event_stub" class="%openclassrooms.tests.util.event_stub.class%"/>
-        <service id="openclassrooms.tests.util.event_dispatcher_stub" class="%openclassrooms.tests.util.event_dispatcher_stub.class%"/>
-        <service id="openclassrooms.tests.util.event_factory_stub" class="%openclassrooms.tests.util.event_factory_stub.class%"/>
+        <service id="openclassrooms.tests.util.security_stub" class="%openclassrooms.tests.util.security_stub.class%" public="true"/>
+        <service id="openclassrooms.tests.util.authorization_checker_stub" class="%openclassrooms.tests.util.authorization_checker_stub.class%" public="true"/>
+        <service id="openclassrooms.tests.util.cache_stub" class="%openclassrooms.tests.util.cache_stub.class%" public="true"/>
+        <service id="openclassrooms.tests.util.entity_manager_stub" class="%openclassrooms.tests.util.entity_manager_stub.class%" public="true"/>
+        <service id="openclassrooms.tests.util.pdo_transaction_stub" class="%openclassrooms.tests.util.pdo_transaction_stub.class%" public="true"/>
+        <service id="openclassrooms.tests.util.event_stub" class="%openclassrooms.tests.util.event_stub.class%" public="true"/>
+        <service id="openclassrooms.tests.util.event_dispatcher_stub" class="%openclassrooms.tests.util.event_dispatcher_stub.class%" public="true"/>
+        <service id="openclassrooms.tests.util.event_factory_stub" class="%openclassrooms.tests.util.event_factory_stub.class%" public="true"/>
         <!--USE CASES WITHOUT CONFIGURATION-->
-        <service id="openclassrooms.tests.use_cases.use_case_stub" class="%openclassrooms.tests.use_cases.use_case_stub.class%"/>
-        <service id="openclassrooms.tests.use_cases.use_case_stub_tagged" class="%openclassrooms.tests.use_cases.use_case_stub.class%">
+        <service id="openclassrooms.tests.use_cases.use_case_stub" class="%openclassrooms.tests.use_cases.use_case_stub.class%" public="true"/>
+        <service id="openclassrooms.tests.use_cases.use_case_stub_tagged" class="%openclassrooms.tests.use_cases.use_case_stub.class%" public="true">
             <tag name="openclassrooms.use_case"/>
         </service>
-        <service id="openclassrooms.tests.use_cases.security_use_case_stub" class="%openclassrooms.tests.use_cases.security_use_case_stub.class%">
+        <service id="openclassrooms.tests.use_cases.security_use_case_stub" class="%openclassrooms.tests.use_cases.security_use_case_stub.class%" public="true">
             <tag name="openclassrooms.use_case" security="openclassrooms.tests.util.security_stub"/>
         </service>
-        <service id="openclassrooms.tests.use_cases.security_authorization_checker_use_case_stub" class="%openclassrooms.tests.use_cases.security_use_case_stub.class%">
+        <service id="openclassrooms.tests.use_cases.security_authorization_checker_use_case_stub" class="%openclassrooms.tests.use_cases.security_use_case_stub.class%" public="true">
             <tag name="openclassrooms.use_case" security="openclassrooms.tests.util.authorization_checker_stub"/>
         </service>
-        <service id="openclassrooms.tests.use_cases.cache_use_case_stub" class="%openclassrooms.tests.use_cases.cache_use_case_stub.class%">
+        <service id="openclassrooms.tests.use_cases.cache_use_case_stub" class="%openclassrooms.tests.use_cases.cache_use_case_stub.class%" public="true">
             <tag name="openclassrooms.use_case" cache="openclassrooms.tests.util.cache_stub"/>
         </service>
-        <service id="openclassrooms.tests.use_cases.transaction_transaction_use_case_stub" class="%openclassrooms.tests.use_cases.transaction_use_case_stub.class%">
+        <service id="openclassrooms.tests.use_cases.transaction_transaction_use_case_stub" class="%openclassrooms.tests.use_cases.transaction_use_case_stub.class%" public="true">
             <tag name="openclassrooms.use_case" transaction="openclassrooms.tests.util.pdo_transaction_stub"/>
         </service>
-        <service id="openclassrooms.tests.use_cases.entity_manager_transaction_use_case_stub" class="%openclassrooms.tests.use_cases.transaction_use_case_stub.class%">
+        <service id="openclassrooms.tests.use_cases.entity_manager_transaction_use_case_stub" class="%openclassrooms.tests.use_cases.transaction_use_case_stub.class%" public="true">
             <tag name="openclassrooms.use_case" transaction="openclassrooms.tests.util.entity_manager_stub"/>
         </service>
-        <service id="openclassrooms.tests.use_cases.event_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%">
+        <service id="openclassrooms.tests.use_cases.event_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%" public="true">
             <tag name="openclassrooms.use_case" event-sender="openclassrooms.tests.util.event_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>
         </service>
-        <service id="openclassrooms.tests.use_cases.event_dispatcher_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%">
+        <service id="openclassrooms.tests.use_cases.event_dispatcher_event_use_case_stub" class="%openclassrooms.tests.use_cases.event_use_case_stub.class%" public="true">
             <tag name="openclassrooms.use_case" event-sender="openclassrooms.tests.util.event_dispatcher_stub" event-factory="openclassrooms.tests.util.event_factory_stub"/>
         </service>
     </services>

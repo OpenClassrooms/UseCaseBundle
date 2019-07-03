@@ -6,11 +6,12 @@ use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\DoctrineDBALCo
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\ConnectionMock;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\EntityManagerSpy;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class DoctrineDBALConnectionTransactionAdapterTest extends \PHPUnit_Framework_TestCase
+class DoctrineDBALConnectionTransactionAdapterTest extends TestCase
 {
     /**
      * @var EntityManagerSpy
@@ -56,6 +57,7 @@ class DoctrineDBALConnectionTransactionAdapterTest extends \PHPUnit_Framework_Te
         $this->assertTrue(ConnectionMock::$committed);
         $this->assertFalse($this->transaction->isTransactionActive());
     }
+
     /**
      * @test
      */

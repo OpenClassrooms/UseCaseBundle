@@ -36,7 +36,7 @@ class EntityManagerSpy extends EntityManager
         $this->conn->beginTransaction();
     }
 
-    public function flush()
+    public function flush($entity = null)
     {
         self::$flushed = true;
     }
