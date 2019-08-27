@@ -9,7 +9,7 @@
     </parameters>
 
     <services>
-        <service id="openclassrooms.use_case.use_case_proxy_factory" class="%openclassrooms.use_case.use_case_proxy_factory.class%" shared="false">
+        <service id="openclassrooms.use_case.use_case_proxy_factory" class="%openclassrooms.use_case.use_case_proxy_factory.class%" shared="false" public="true">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
