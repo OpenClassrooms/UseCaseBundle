@@ -17,8 +17,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('openclassrooms_use_case');
+        $treeBuilder = new TreeBuilder('openclassrooms_use_case');
+        $rootNode = $treeBuilder->getRootNode();
         $rootNode->children()
                     ->scalarNode('security')->defaultValue('security.authorization_checker')->end()
                     ->scalarNode('transaction')->defaultValue('doctrine.orm.entity_manager')->end()
