@@ -2,7 +2,6 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
@@ -26,11 +25,11 @@ class EventDispatcherSpy extends EventDispatcher
         self::$sent = false;
     }
 
-    public function dispatch($eventName, Event $event = null)
+    public function dispatch($event, string $eventName = null)
     {
         self::$eventName = $eventName;
         self::$sent = true;
 
-        parent::dispatch($eventName, $event);
+        parent::dispatch($event, $eventName);
     }
 }
