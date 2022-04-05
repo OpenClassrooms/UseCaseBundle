@@ -3,7 +3,6 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Event\Impl;
 
 use OpenClassrooms\UseCase\Application\Services\Event\EventSender;
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -23,7 +22,7 @@ class EventDispatcherEventAdapter implements EventSender
 
     public function send($eventName, $event)
     {
-        /** @var Event $event */
-        $this->eventDispatcher->dispatch($eventName, $event);
+        /** @var object $event */
+        $this->eventDispatcher->dispatch($event, $eventName);
     }
 }
