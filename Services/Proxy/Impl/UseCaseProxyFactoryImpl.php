@@ -3,7 +3,7 @@
 namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Proxy\Impl;
 
 use Doctrine\Common\Annotations\Reader;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Proxy\UseCaseProxyFactory;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Security\SecurityFactory;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\TransactionFactory;
@@ -23,7 +23,6 @@ use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 use OpenClassrooms\UseCase\Application\Annotations\Security as SecurityAnnotation;
 use OpenClassrooms\UseCase\Application\Annotations\Cache as CacheAnnotation;
 use OpenClassrooms\UseCase\Application\Annotations\Transaction as TransactionAnnotation;
