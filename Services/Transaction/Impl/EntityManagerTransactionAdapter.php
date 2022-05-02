@@ -2,7 +2,7 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use OpenClassrooms\UseCase\Application\Services\Transaction\Transaction;
 
