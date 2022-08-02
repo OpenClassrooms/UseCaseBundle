@@ -60,7 +60,7 @@ This is the default configuration:
 # app/config/config.yml
 openclassrooms_use_case:
     security: security_context               
-    # an implementation of SecurityContextInterface or OpenClassrooms\UseCase\Application\Services\Security\Security
+    # an implementation of OpenClassrooms\UseCase\Application\Services\Security\Security
     transaction: doctrine.orm.entity_manager
     # an implementation of EntityManagerInterface or OpenClassrooms\UseCase\Application\Services\Transaction\Transaction
     event_sender: event_dispatcher
@@ -79,8 +79,9 @@ For usage of UseCase Library, please see the UseCase Library [documentation](htt
 
 Add the tag ```openclassrooms.use_case``` to the use case declaration to enable UseCase Library facilities.
 
+### Resources/config/services.xml
+
 ```xml
-<!-- Resources/config/services.xml -->
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -112,7 +113,7 @@ For each tag and each facility, a specific service can be set:
                     event-factory="a.different.event_factory"/>
         </service>
 ```
-- *security* parameter MUST be an implementation of SecurityContextInterface or OpenClassrooms\UseCase\Application\Services\Security\Security
+- *security* parameter MUST be an implementation of OpenClassrooms\UseCase\Application\Services\Security\Security
 - *cache* parameter MUST be an implementation of OpenClassrooms\Cache\Cache\Cache
 - *transaction* parameter MUST be an implementation of EntityManagerInterface or OpenClassrooms\UseCase\Application\Services\Transaction\Transaction
 - *event-sender* parameter MUST be an implementation of EventDispatcherInterface or OpenClassrooms\UseCase\Application\Services\Event\EventSender

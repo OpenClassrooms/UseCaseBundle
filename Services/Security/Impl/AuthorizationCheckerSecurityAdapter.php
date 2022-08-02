@@ -5,7 +5,6 @@ namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Security\Impl;
 use OpenClassrooms\UseCase\Application\Services\Security\Security;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
