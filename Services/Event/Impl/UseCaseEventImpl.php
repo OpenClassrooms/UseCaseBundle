@@ -5,7 +5,7 @@ namespace OpenClassrooms\Bundle\UseCaseBundle\Services\Event\Impl;
 use OpenClassrooms\Bundle\UseCaseBundle\Services\Event\UseCaseEvent;
 use OpenClassrooms\UseCase\BusinessRules\Requestors\UseCaseRequest;
 use OpenClassrooms\UseCase\BusinessRules\Responders\UseCaseResponse;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
