@@ -2,12 +2,15 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
-use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Driver\Connection as DriverConnection;
+use Doctrine\DBAL\Driver\Result;
+use Doctrine\DBAL\Driver\Statement;
+use Doctrine\DBAL\ParameterType;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class ConnectionMock extends Connection
+class ConnectionMock implements DriverConnection
 {
     /**
      * @var bool
@@ -36,7 +39,7 @@ class ConnectionMock extends Connection
         self::$rollBacked = false;
     }
 
-    public function getConnection()
+    public function getConnection(): self
     {
         return new ConnectionMock();
     }
@@ -65,5 +68,61 @@ class ConnectionMock extends Connection
     public function isTransactionActive()
     {
         return self::$transactionNumber > 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function prepare($sql)
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function query()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function quote($value, $type = ParameterType::STRING)
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function exec($sql)
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function lastInsertId($name = null)
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function errorCode()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function errorInfo()
+    {
+        return null;
     }
 }
