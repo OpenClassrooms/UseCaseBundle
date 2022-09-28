@@ -25,7 +25,7 @@ class EventDispatcherSpy extends EventDispatcher
         self::$sent = false;
     }
 
-    public function dispatch(object $event, string $eventName = null): object
+    public function dispatch($event, string $eventName = null)
     {
         self::$eventName = $eventName;
         self::$sent = true;
