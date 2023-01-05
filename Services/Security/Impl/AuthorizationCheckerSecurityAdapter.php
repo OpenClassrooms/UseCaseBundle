@@ -26,8 +26,11 @@ class AuthorizationCheckerSecurityAdapter implements Security
      */
     public function checkAccess($attributes, $object = null)
     {
-        if (!$this->authorizationChecker->isGranted($attributes, $object)) {
-            throw new AccessDeniedException();
+        foreach ($attributes as $attribute) {
+            if ($this->authorizationChecker->isGranted($attribute, $object)) {
+                return;
+            }
         }
+        throw new AccessDeniedException();
     }
 }
