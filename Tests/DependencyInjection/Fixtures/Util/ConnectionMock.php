@@ -73,17 +73,17 @@ class ConnectionMock implements DriverConnection
     /**
      * {@inheritDoc}
      */
-    public function prepare($sql)
+    public function prepare($sql): StatementSpy
     {
-        return null;
+        return new StatementSpy();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function query()
+    public function query(string $sql): ResultSpy
     {
-        return null;
+        return new ResultSpy();
     }
 
     /**
@@ -97,9 +97,9 @@ class ConnectionMock implements DriverConnection
     /**
      * {@inheritDoc}
      */
-    public function exec($sql)
+    public function exec($sql): int
     {
-        return null;
+        return 1;
     }
 
     /**
