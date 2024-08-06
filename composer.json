@@ -21,9 +21,9 @@
     },
     "require": {
         "php": ">=7.1",
-        "openclassrooms/use-case": "^v1.1.0",
-        "openclassrooms/cache-bundle": "^2.2",
-        "openclassrooms/cache": "1.0.*@dev",
+        "openclassrooms/use-case": "^v1.1.1",
+        "openclassrooms/cache-bundle": "^v2.2.1",
+        "openclassrooms/cache": "v1.1.0",
         "symfony/dependency-injection": "~5.0 || ~6.4 || ~7.1",
         "symfony/config": "~5.0 || ~6.4 || ~7.1",
         "symfony/http-kernel": "~5.0 || ~6.4 || ~7.1 || ~7.1",
