@@ -26,27 +26,27 @@ class EntityManagerSpy extends EntityManager
         self::$flushed = false;
     }
 
-    public function getConnection()
+    public function getConnection(): Connection
     {
         return $this->conn;
     }
 
-    public function beginTransaction()
+    public function beginTransaction(): void
     {
         $this->conn->beginTransaction();
     }
 
-    public function flush($entity = null)
+    public function flush($entity = null): void
     {
         self::$flushed = true;
     }
 
-    public function commit()
+    public function commit(): void
     {
         $this->conn->commit();
     }
 
-    public function rollback()
+    public function rollback(): void
     {
         $this->conn->rollback();
     }

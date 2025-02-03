@@ -33,12 +33,17 @@ class OpenClassroomsUseCaseExtension extends Extension
         $container->setParameter('openclassrooms.use_case.default_entity_manager', $config['transaction']);
         $container->setParameter('openclassrooms.use_case.default_event_sender', $config['event_sender']);
         $container->setParameter('openclassrooms.use_case.default_event_factory', $config['event_factory']);
+
+        if (isset($config['cache'])) {
+            $cache = $container->setAlias('openclassrooms.use_case.cache', $config['cache']);
+            $cache->setPublic(true);
+        }
     }
 
     /**
      * @return string
      */
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'open_classrooms_use_case';
     }

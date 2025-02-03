@@ -6,15 +6,15 @@ use Doctrine\DBAL\Driver\Result;
 
 class ResultSpy implements Result
 {
-    public function fetchNumeric()
+    public function fetchNumeric(): false|array
     {
     }
 
-    public function fetchAssociative()
+    public function fetchAssociative(): false|array
     {
     }
 
-    public function fetchOne()
+    public function fetchOne(): mixed
     {
     }
 

@@ -2,7 +2,7 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Compiler;
 
-use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\AbstractDependencyInjectionTest;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\AbstractDependencyInjectionTestCase;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\SecurityUseCaseStub;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\TransactionUseCaseStub;
@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class UseCaseProxyPassTest extends AbstractDependencyInjectionTest
+class UseCaseProxyPassTest extends AbstractDependencyInjectionTestCase
 {
     /**
      * @test
@@ -145,7 +145,7 @@ class UseCaseProxyPassTest extends AbstractDependencyInjectionTest
         $this->assertEventUseCaseProxy($useCaseProxy);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->initContainer();
         $this->container->compile();

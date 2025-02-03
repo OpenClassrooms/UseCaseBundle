@@ -71,7 +71,7 @@ class EntityManagerTransactionAdapterTest extends TestCase
         $this->assertFalse($this->transaction->isTransactionActive());
     }
 
-    protected function setUp()
+    protected function setUp():void
     {
         ConnectionMock::$transactionNumber = 0;
         $this->entityManager = new EntityManagerSpy();

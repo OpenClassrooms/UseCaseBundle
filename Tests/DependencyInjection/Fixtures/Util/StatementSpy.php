@@ -6,9 +6,9 @@ use Doctrine\DBAL\Driver\Result;
 use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\ParameterType;
 
-class StatementSpy implements Statement
+class StatementSpy extends \Doctrine\DBAL\Statement
 {
-    public function bindValue($param, $value, $type = ParameterType::STRING)
+    public function bindValue($param, $value, $type = ParameterType::STRING): void
     {
     }
 

@@ -2,15 +2,13 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
-use Doctrine\DBAL\Driver\Connection as DriverConnection;
-use Doctrine\DBAL\Driver\Result;
-use Doctrine\DBAL\Driver\Statement;
+use Doctrine\DBAL\Connection as DriverConnection;
 use Doctrine\DBAL\ParameterType;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class ConnectionMock implements DriverConnection
+class ConnectionMock extends DriverConnection
 {
     /**
      * @var bool
@@ -44,19 +42,19 @@ class ConnectionMock implements DriverConnection
         return new ConnectionMock();
     }
 
-    public function beginTransaction()
+    public function beginTransaction(): void
     {
         self::$transactionNumber++;
         self::$transactionBegin = true;
     }
 
-    public function commit()
+    public function commit(): void
     {
         self::$committed = true;
         ConnectionMock::$transactionNumber--;
     }
 
-    public function rollback()
+    public function rollback(): void
     {
         self::$rollBacked = true;
         ConnectionMock::$transactionNumber--;
@@ -65,7 +63,7 @@ class ConnectionMock implements DriverConnection
     /**
      * @return bool
      */
-    public function isTransactionActive()
+    public function isTransactionActive(): bool
     {
         return self::$transactionNumber > 0;
     }
@@ -73,7 +71,7 @@ class ConnectionMock implements DriverConnection
     /**
      * {@inheritDoc}
      */
-    public function prepare($sql): StatementSpy
+    public function prepare(string $sql): StatementSpy
     {
         return new StatementSpy();
     }
@@ -89,7 +87,7 @@ class ConnectionMock implements DriverConnection
     /**
      * {@inheritDoc}
      */
-    public function quote($value, $type = ParameterType::STRING)
+    public function quote($value, $type = ParameterType::STRING): string
     {
         return null;
     }
@@ -97,7 +95,7 @@ class ConnectionMock implements DriverConnection
     /**
      * {@inheritDoc}
      */
-    public function exec($sql): int
+    public function exec(string $sql): int
     {
         return 1;
     }
@@ -105,9 +103,9 @@ class ConnectionMock implements DriverConnection
     /**
      * {@inheritDoc}
      */
-    public function lastInsertId($name = null)
+    public function lastInsertId($name = null): int|string
     {
-        return null;
+        return 1;
     }
 
     /**
@@ -124,5 +122,15 @@ class ConnectionMock implements DriverConnection
     public function errorInfo()
     {
         return null;
+    }
+
+    public function getNativeConnection()
+    {
+        // TODO: Implement getNativeConnection() method.
+    }
+
+    public function getServerVersion(): string
+    {
+        // TODO: Implement getServerVersion() method.
     }
 }

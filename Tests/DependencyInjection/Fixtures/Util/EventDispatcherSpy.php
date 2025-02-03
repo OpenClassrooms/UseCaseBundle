@@ -30,6 +30,6 @@ class EventDispatcherSpy extends EventDispatcher
         self::$eventName = $eventName;
         self::$sent = true;
 
-        parent::dispatch($event, $eventName);
+        return parent::dispatch($event, $eventName);
     }
 }

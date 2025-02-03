@@ -1,2 +1,0 @@
-open_classrooms_use_case:
-    transaction: openclassrooms.tests.util.configuration_entity_manager_stub

@@ -2,21 +2,24 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Yaml;
 
-use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\AbstractDependencyInjectionTest;
+use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\AbstractDependencyInjectionTestCase;
+use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventFactoryIsNotDefinedException;
+use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventIsNotDefinedException;
 use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxy;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class EventOpenClassroomsUseCaseExtensionTest extends AbstractDependencyInjectionTest
+class EventOpenClassroomsUseCaseExtensionTest extends AbstractDependencyInjectionTestCase
 {
     /**
      * @test
-     * @expectedException \OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventIsNotDefinedException
      */
     public function WithEventConfigurationWithoutEvent_EventUseCase_ThrowException()
     {
-        $this->configLoader->load('EventConfiguration.yml');
+        $this->expectException(EventIsNotDefinedException::class);
+
+        $this->configLoader->load('EventConfiguration.php');
         $this->container->compile();
 
         $this->container->get('openclassrooms.tests.use_cases.configuration_event_use_case_stub');
@@ -24,12 +27,13 @@ class EventOpenClassroomsUseCaseExtensionTest extends AbstractDependencyInjectio
 
     /**
      * @test
-     * @expectedException \OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventIsNotDefinedException
-     * @expectedExceptionMessage EventSender should be defined for use case: OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub. Default EventSender: 'event_dispatcher' is not defined.
      */
     public function WithDefaultConfigurationWithoutEvent_EventUseCase_ThrowException()
     {
-        $this->configLoader->load('DefaultConfiguration.yml');
+        $this->expectException(EventIsNotDefinedException::class);
+        $this->expectExceptionMessage("EventSender should be defined for use case: OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub. Default EventSender: 'event_dispatcher' is not defined.");
+
+        $this->configLoader->load('DefaultConfiguration.php');
         $this->container->compile();
 
         $this->container->get('openclassrooms.tests.use_cases.configuration_event_use_case_stub');
@@ -37,11 +41,12 @@ class EventOpenClassroomsUseCaseExtensionTest extends AbstractDependencyInjectio
 
     /**
      * @test
-     * @expectedException \OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Exceptions\EventFactoryIsNotDefinedException
      */
     public function WithEventFactoryConfigurationWithoutEventFactory_EventUseCase_ThrowException()
     {
-        $this->configLoader->load('EventConfiguration.yml');
+        $this->expectException(EventFactoryIsNotDefinedException::class);
+
+        $this->configLoader->load('EventConfiguration.php');
         $this->serviceLoader->load('event_only_services.xml');
         $this->container->compile();
 
@@ -53,7 +58,7 @@ class EventOpenClassroomsUseCaseExtensionTest extends AbstractDependencyInjectio
      */
     public function WithEventConfiguration_EventUseCase_ReturnUseCaseProxy()
     {
-        $this->configLoader->load('EventConfiguration.yml');
+        $this->configLoader->load('EventConfiguration.php');
         $this->serviceLoader->load('default_services.xml');
         $this->container->compile();
 
@@ -68,7 +73,7 @@ class EventOpenClassroomsUseCaseExtensionTest extends AbstractDependencyInjectio
      */
     public function WithDefaultConfiguration_ReturnUseCaseProxy()
     {
-        $this->configLoader->load('DefaultConfiguration.yml');
+        $this->configLoader->load('DefaultConfiguration.php');
         $this->serviceLoader->load('default_services.xml');
         $this->container->compile();
 
@@ -78,7 +83,7 @@ class EventOpenClassroomsUseCaseExtensionTest extends AbstractDependencyInjectio
         $this->assertEventUseCaseProxy($useCaseProxy);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->initContainer();
         $this->serviceLoader->load('event_configuration_services.xml');

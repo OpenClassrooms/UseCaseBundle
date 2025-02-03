@@ -2,25 +2,38 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
-use Doctrine\Common\Cache\ArrayCache;
-use OpenClassrooms\Cache\Cache\CacheImpl;
+use Psr\Cache\CacheItemInterface;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\CacheItem;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-class CacheSpy extends CacheImpl
+class CacheSpy extends ArrayAdapter
 {
-    public static $saved = false;
+    /**
+     * @var array<string, true>
+     */
+    public static array $saved = [];
 
-    public function __construct()
+    /**
+     * @var array<string, true>
+     */
+    public static array $getted = [];
+
+    public function save(CacheItemInterface $item): bool
     {
-        $this->cache = new ArrayCache();
+        self::$saved[$item->getKey()] = (new \ReflectionProperty($item, 'expiry'))->getValue($item);
+
+        return parent::save($item);
     }
 
-    public function save($id, $data, $lifeTime = null)
+    public function getItem(mixed $key): CacheItem
     {
-        self::$saved = true;
+        $item = parent::getItem($key);
 
-        return parent::save($id, $data, $lifeTime);
+        self::$getted[$item->getKey()] = $item->isHit();
+
+        return $item;
     }
 }

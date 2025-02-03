@@ -141,10 +141,10 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
         if (isset($tagParameters['cache'])) {
             /** @var Cache $cache */
             $cache = $this->container->get($tagParameters['cache']);
-        } elseif ($this->container->has('openclassrooms.cache.cache')) {
-            $cache = $this->container->get('openclassrooms.cache.cache');
+        } elseif ($this->container->has('openclassrooms.use_case.cache')) {
+            $cache = $this->container->get('openclassrooms.use_case.cache');
         } else {
-            throw new CacheIsNotDefinedException('Default cache is not defined. Have you configured open_classrooms_cache ?');
+            throw new CacheIsNotDefinedException('Default cache is not defined. Have you configured it ?');
         }
 
         return $cache;
