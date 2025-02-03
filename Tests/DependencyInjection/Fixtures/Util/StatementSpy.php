@@ -2,11 +2,11 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
-use Doctrine\DBAL\Driver\Result;
-use Doctrine\DBAL\Driver\Statement;
+use Doctrine\DBAL\Result;
+use Doctrine\DBAL\Statement;
 use Doctrine\DBAL\ParameterType;
 
-class StatementSpy extends \Doctrine\DBAL\Statement
+class StatementSpy extends Statement
 {
     public function bindValue($param, $value, $type = ParameterType::STRING): void
     {
