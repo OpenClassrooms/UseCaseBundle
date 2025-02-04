@@ -8,6 +8,11 @@ use Doctrine\DBAL\ParameterType;
 
 class StatementSpy extends Statement
 {
+    public function __construct()
+    {
+
+    }
+
     public function bindValue($param, $value, $type = ParameterType::STRING): void
     {
     }

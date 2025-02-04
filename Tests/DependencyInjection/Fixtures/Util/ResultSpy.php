@@ -2,10 +2,15 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util;
 
-use Doctrine\DBAL\Driver\Result;
+use Doctrine\DBAL\Result;
 
-class ResultSpy implements Result
+class ResultSpy extends Result
 {
+    public function __construct()
+    {
+
+    }
+
     public function fetchNumeric(): false|array
     {
     }
@@ -41,4 +46,6 @@ class ResultSpy implements Result
     public function free(): void
     {
     }
+
+
 }
