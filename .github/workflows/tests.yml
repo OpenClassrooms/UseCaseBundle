@@ -26,6 +26,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           coverage: none
+          tools: phpstan
 
       - name: Configure Symfony
         run: composer config extra.symfony.require "${{ matrix.symfony-version }}"
@@ -38,3 +39,6 @@ jobs:
 
       - name: Run Phpunit
         run: ./vendor/bin/phpunit
+
+      - name: Run Phpstan
+        run: phpstan analyze DependencyInjection Services
