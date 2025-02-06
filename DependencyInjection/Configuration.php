@@ -15,7 +15,7 @@ class Configuration implements ConfigurationInterface
      *
      * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder The tree builder
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('openclassrooms_use_case');
         $rootNode = $treeBuilder->getRootNode();
@@ -24,6 +24,7 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('transaction')->defaultValue('doctrine.orm.entity_manager')->end()
                     ->scalarNode('event_sender')->defaultValue('event_dispatcher')->end()
                     ->scalarNode('event_factory')->defaultValue('openclassrooms.use_case.event_factory')->end()
+                    ->variableNode('cache')->end()
                   ->end();
 
         return $treeBuilder;

@@ -6,6 +6,7 @@ use OpenClassrooms\Bundle\UseCaseBundle\Services\Security\Impl\AuthorizationChec
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\AuthorizationCheckerSpy;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\NotGrantedAuthorizationCheckerStub;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
@@ -19,16 +20,17 @@ class AuthorizationCheckerSecurityAdapterTest extends TestCase
     public function IsGranted_DonTThrowException()
     {
         $security = new AuthorizationCheckerSecurityAdapter(new AuthorizationCheckerSpy());
-        $security->checkAccess(array());
+        $security->checkAccess(['ROLE_USER']);
     }
 
     /**
      * @test
-     * @expectedException \Symfony\Component\Security\Core\Exception\AccessDeniedException
      */
     public function IsNotGranted_ThrowAccessDeniedException()
     {
+        $this->expectException(AccessDeniedException::class);
+
         $security = new AuthorizationCheckerSecurityAdapter(new NotGrantedAuthorizationCheckerStub());
-        $security->checkAccess(array());
+        $security->checkAccess(['ROLE_USER']);
     }
 }

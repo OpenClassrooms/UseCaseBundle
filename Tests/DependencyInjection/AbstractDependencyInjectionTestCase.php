@@ -2,8 +2,6 @@
 
 namespace OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection;
 
-use OpenClassrooms\Bundle\CacheBundle\DependencyInjection\OpenClassroomsCacheExtension;
-use OpenClassrooms\Bundle\CacheBundle\OpenClassroomsCacheBundle;
 use OpenClassrooms\Bundle\UseCaseBundle\DependencyInjection\OpenClassroomsUseCaseExtension;
 use OpenClassrooms\Bundle\UseCaseBundle\OpenClassroomsUseCaseBundle;
 use OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\CacheUseCaseStub;
@@ -20,13 +18,13 @@ use OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\UseCaseProxy;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>
  */
-abstract class AbstractDependencyInjectionTest extends TestCase
+abstract class AbstractDependencyInjectionTestCase extends TestCase
 {
     const USE_CASE_PROXY_CLASS = 'OpenClassrooms\UseCase\Application\Services\Proxy\UseCases\Impl\UseCaseProxyImpl';
 
@@ -36,7 +34,7 @@ abstract class AbstractDependencyInjectionTest extends TestCase
     protected $container;
 
     /**
-     * @var YamlFileLoader
+     * @var PhpFileLoader
      */
     protected $configLoader;
 
@@ -71,8 +69,8 @@ abstract class AbstractDependencyInjectionTest extends TestCase
 
     protected function initConfigLoader()
     {
-        $this->configLoader = new YamlFileLoader($this->container, new FileLocator(__DIR__.'/Fixtures/Resources/config/'));
-        $this->configLoader->load('DefaultConfiguration.yml');
+        $this->configLoader = new PhpFileLoader($this->container, new FileLocator(__DIR__.'/Fixtures/Resources/config/'));
+        $this->configLoader->load('DefaultConfiguration.php');
     }
 
     protected function assertSecurityUseCaseProxy(UseCaseProxy $useCaseProxy)
@@ -93,7 +91,7 @@ abstract class AbstractDependencyInjectionTest extends TestCase
     {
         $this->assertUseCaseProxy($useCaseProxy);
         $this->assertEquals(new CacheUseCaseStub(), $useCaseProxy->getUseCase());
-        $this->assertTrue(CacheSpy::$saved);
+        $this->assertNotEmpty(CacheSpy::$saved);
     }
 
     protected function assertTransactionUseCaseProxy(UseCaseProxy $useCaseProxy)
@@ -109,15 +107,5 @@ abstract class AbstractDependencyInjectionTest extends TestCase
         $this->assertEquals(new EventUseCaseStub(), $useCaseProxy->getUseCase());
         $this->assertTrue(EventDispatcherSpy::$sent);
         $this->assertEquals(EventUseCaseStub::EVENT_NAME, EventDispatcherSpy::$eventName);
-    }
-
-    protected function initCacheBundle()
-    {
-        $cacheExtension = new OpenClassroomsCacheExtension();
-        $this->container->registerExtension($cacheExtension);
-        $this->container->loadFromExtension('open_classrooms_cache');
-
-        $cacheBundle = new OpenClassroomsCacheBundle();
-        $cacheBundle->build($this->container);
     }
 }

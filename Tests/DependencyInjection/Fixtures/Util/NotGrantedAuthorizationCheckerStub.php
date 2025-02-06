@@ -38,7 +38,7 @@ class NotGrantedAuthorizationCheckerStub implements AuthorizationCheckerInterfac
      *
      * @return bool
      */
-    public function isGranted($attributes, $object = null)
+    public function isGranted($attributes, $object = null): bool
     {
         return false;
     }

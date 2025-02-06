@@ -7,7 +7,7 @@ use OpenClassrooms\UseCase\Application\Services\Event\EventFactory;
 use OpenClassrooms\UseCase\Application\Services\Event\Exceptions\InvalidEventNameException;
 use OpenClassrooms\UseCase\BusinessRules\Requestors\UseCaseRequest;
 use OpenClassrooms\UseCase\BusinessRules\Responders\UseCaseResponse;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@turn-it-up.org>

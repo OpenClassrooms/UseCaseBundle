@@ -43,7 +43,7 @@ class AuthorizationCheckerSpy implements AuthorizationCheckerInterface
      *
      * @return bool
      */
-    public function isGranted($attributes, $object = null)
+    public function isGranted(mixed $attributes, mixed $object = null): bool
     {
         self::$isGranted = true;
 

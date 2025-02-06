@@ -1,6 +1,6 @@
 {
     "name": "openclassrooms/use-case-bundle",
-    "description": "Symfony2 Bundle for OpenClassrooms UseCase",
+    "description": "Symfony Bundle for OpenClassrooms UseCase",
     "type": "symfony-bundle",
     "keywords": ["design"],
     "license": "MIT",
@@ -20,19 +20,19 @@
         }
     },
     "require": {
-        "php": ">=7.1",
-        "openclassrooms/use-case": "^v1.1.1",
-        "openclassrooms/cache-bundle": "^v2.2.1",
-        "openclassrooms/cache": "v1.1.0",
-        "symfony/dependency-injection": "~5.0 || ~6.4 || ~7.1",
+        "php": ">=8.2",
+        "openclassrooms/use-case": "^2.0",
+        "symfony/cache":  "~5.4 || ~6.4 || ~7.1",
+        "symfony/dependency-injection": "~5.4 || ~6.4 || ~7.1",
         "symfony/config": "~5.0 || ~6.4 || ~7.1",
         "symfony/http-kernel": "~5.0 || ~6.4 || ~7.1 || ~7.1",
         "symfony/security-core": "~5.0 || ~6.4 || ~7.1",
         "doctrine/orm": "~2.3 || ~3.2",
+        "doctrine/dbal": "~3.2",
         "symfony/event-dispatcher": "~5.0 || ~6.4 || ~7.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "~9.6"
+        "phpunit/phpunit": "^10"
     },
     "extra": {
         "branch-alias": {
