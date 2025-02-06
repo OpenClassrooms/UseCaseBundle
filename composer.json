@@ -21,7 +21,7 @@
     },
     "require": {
         "php": ">=8.2",
-        "openclassrooms/use-case": "dev-remove_openclassrooms_cache",
+        "openclassrooms/use-case": "^2.0",
         "symfony/cache":  "~5.4 || ~6.4 || ~7.1",
         "symfony/dependency-injection": "~5.4 || ~6.4 || ~7.1",
         "symfony/config": "~5.0 || ~6.4 || ~7.1",
