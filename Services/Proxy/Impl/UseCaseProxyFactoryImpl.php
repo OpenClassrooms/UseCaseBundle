@@ -48,7 +48,9 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
      */
     private $builder;
 
-    public function __construct()
+    public function __construct(
+        private readonly AuthorizationCheckerInterface $authorizationChecker
+    )
     {
         $this->builder = new UseCaseProxyBuilderImpl();
     }
@@ -114,15 +116,7 @@ class UseCaseProxyFactoryImpl implements UseCaseProxyFactory
         if (isset($tagParameters['security'])) {
             $security = $this->container->get($tagParameters['security']);
         } else {
-            $defaultSecurityContextId = $this->container->getParameter(
-                'openclassrooms.use_case.default_authorization_checker'
-            );
-            if (!$this->container->has($defaultSecurityContextId)) {
-                throw new SecurityIsNotDefinedException('Default security context: \''.$defaultSecurityContextId.'\' is not defined.');
-            }
-            $security = $this->container->get(
-                $this->container->getParameter('openclassrooms.use_case.default_authorization_checker')
-            );
+            $security = $this->authorizationChecker;
         }
         if ($security instanceof AuthorizationCheckerInterface) {
             /** @var SecurityFactory $securityFactory */

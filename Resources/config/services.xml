@@ -7,6 +7,7 @@
             <call method="setReader">
                 <argument type="service" id="annotation_reader"/>
             </call>
+            <argument type="service" id="security.authorization_checker"/>
         </service>
         <service id="openclassrooms.use_case.security_factory" class="OpenClassrooms\Bundle\UseCaseBundle\Services\Security\Impl\SecurityFactoryImpl" public="true"/>
         <service id="openclassrooms.use_case.transaction_factory" class="OpenClassrooms\Bundle\UseCaseBundle\Services\Transaction\Impl\TransactionFactoryImpl" public="true"/>
