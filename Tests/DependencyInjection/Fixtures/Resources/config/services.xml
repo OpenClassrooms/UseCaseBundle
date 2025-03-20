@@ -16,6 +16,7 @@
         <parameter key="openclassrooms.tests.use_cases.event_use_case_stub.class">OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\BusinessRules\UseCases\EventUseCaseStub</parameter>
     </parameters>
     <services>
+        <service id="security.authorization_checker" class="OpenClassrooms\Bundle\UseCaseBundle\Tests\DependencyInjection\Fixtures\Util\AuthorizationCheckerSpy"/>
         <service id="annotation_reader" class="Doctrine\Common\Annotations\AnnotationReader"/>
         <service id="openclassrooms.tests.util.security_stub" class="%openclassrooms.tests.util.security_stub.class%" public="true"/>
         <service id="openclassrooms.tests.util.authorization_checker_stub" class="%openclassrooms.tests.util.authorization_checker_stub.class%" public="true"/>
