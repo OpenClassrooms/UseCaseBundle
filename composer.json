@@ -22,17 +22,17 @@
     "require": {
         "php": ">=8.2",
         "openclassrooms/use-case": "^2.0",
-        "symfony/cache":  "~5.4 || ~6.4 || ~7.1",
-        "symfony/dependency-injection": "~5.4 || ~6.4 || ~7.1",
-        "symfony/config": "~5.0 || ~6.4 || ~7.1",
-        "symfony/http-kernel": "~5.0 || ~6.4 || ~7.1 || ~7.1",
-        "symfony/security-core": "~5.0 || ~6.4 || ~7.1",
+        "symfony/cache":  "~6.4 || ~7.1",
+        "symfony/dependency-injection": "~6.4 || ~7.1",
+        "symfony/config": "~6.4 || ~7.1",
+        "symfony/http-kernel": "~6.4 || ~7.1 || ~7.1",
+        "symfony/security-core": "~6.4 || ~7.1",
         "doctrine/orm": "~2.3 || ~3.2",
-        "doctrine/dbal": "~3.2",
-        "symfony/event-dispatcher": "~5.0 || ~6.4 || ~7.1"
+        "doctrine/dbal": "~3.2 || 4.0",
+        "symfony/event-dispatcher": "~6.4 || ~7.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10"
+        "phpunit/phpunit": "^10.5"
     },
     "extra": {
         "branch-alias": {

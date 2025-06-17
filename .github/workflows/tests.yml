@@ -17,7 +17,8 @@ jobs:
     strategy:
       matrix:
         php-versions: [ '8.2', '8.3', '8.4' ]
-        symfony-version: ['5.4.*', '6.4.*', '7.2.*']
+        symfony-version: ['6.4.*', '7.2.*']
+        dependencies-version: ['--prefer-lowest', '--prefer-stable']
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +34,7 @@ jobs:
         run: composer config extra.symfony.require "${{ matrix.symfony-version }}"
 
       - name: Update project dependencies
-        run: composer update --no-progress --ansi --prefer-stable
+        run: composer update --no-progress --ansi ${{ matrix.dependencies-version }}
 
       - name: Composer install
         run: composer install --no-scripts --no-interaction --prefer-dist -oa
