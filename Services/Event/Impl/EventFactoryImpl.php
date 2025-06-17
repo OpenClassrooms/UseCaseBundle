@@ -25,9 +25,9 @@ class EventFactoryImpl implements EventFactory
      */
     public function make(
         $eventName,
-        UseCaseRequest $useCaseRequest = null,
-        UseCaseResponse $useCaseResponse = null,
-        \Exception $exception = null
+        ?UseCaseRequest $useCaseRequest = null,
+        ?UseCaseResponse $useCaseResponse = null,
+        ?\Exception $exception = null
     ) {
         return $this->useCaseEventBuilder
             ->create()

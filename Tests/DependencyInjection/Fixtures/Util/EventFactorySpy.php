@@ -20,9 +20,9 @@ class EventFactorySpy implements EventFactory
      */
     public function make(
         $eventName,
-        UseCaseRequest $useCaseRequest = null,
-        UseCaseResponse $useCaseResponse = null,
-        \Exception $exception = null
+        ?UseCaseRequest $useCaseRequest = null,
+        ?UseCaseResponse $useCaseResponse = null,
+        ?\Exception $exception = null
     ) {
         if (EventUseCaseStub::EVENT_NAME === $eventName) {
             return new Event();
