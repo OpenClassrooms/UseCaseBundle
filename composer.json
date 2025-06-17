@@ -21,14 +21,14 @@
     },
     "require": {
         "php": ">=8.2",
-        "openclassrooms/use-case": "^2.0",
+        "openclassrooms/use-case": "dev-php8.4@dev",
         "symfony/cache":  "~6.4 || ~7.1",
         "symfony/dependency-injection": "~6.4 || ~7.1",
         "symfony/config": "~6.4 || ~7.1",
         "symfony/http-kernel": "~6.4 || ~7.1 || ~7.1",
         "symfony/security-core": "~6.4 || ~7.1",
         "doctrine/orm": "~2.3 || ~3.2",
-        "doctrine/dbal": "~3.2 || 4.0",
+        "doctrine/dbal": "~3.2 || ~4.0",
         "symfony/event-dispatcher": "~6.4 || ~7.1"
     },
     "require-dev": {
