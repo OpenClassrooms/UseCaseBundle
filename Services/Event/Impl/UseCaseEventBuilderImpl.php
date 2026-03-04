@@ -39,7 +39,7 @@ class UseCaseEventBuilderImpl extends UseCaseEventBuilder
     /**
      * @return UseCaseEventBuilder
      */
-    public function withUseCaseRequest(UseCaseRequest $useCaseRequest = null)
+    public function withUseCaseRequest(?UseCaseRequest $useCaseRequest = null)
     {
         if (null !== $useCaseRequest) {
             $this->event->setUseCaseRequest($useCaseRequest);
@@ -51,7 +51,7 @@ class UseCaseEventBuilderImpl extends UseCaseEventBuilder
     /**
      * @return UseCaseEventBuilder
      */
-    public function withUseCaseResponse(UseCaseResponse $useCaseResponse = null)
+    public function withUseCaseResponse(?UseCaseResponse $useCaseResponse = null)
     {
         if (null !== $useCaseResponse) {
             $this->event->setUseCaseResponse($useCaseResponse);
@@ -63,7 +63,7 @@ class UseCaseEventBuilderImpl extends UseCaseEventBuilder
     /**
      * @return UseCaseEventBuilder
      */
-    public function withUseCaseException(\Exception $exception = null)
+    public function withUseCaseException(?\Exception $exception = null)
     {
         if (null !== $exception) {
             $this->event->setUseCaseException($exception);

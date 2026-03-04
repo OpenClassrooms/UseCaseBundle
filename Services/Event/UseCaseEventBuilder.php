@@ -31,19 +31,19 @@ abstract class UseCaseEventBuilder
      * @return UseCaseEventBuilder
      * @codeCoverageIgnore
      */
-    abstract public function withUseCaseRequest(UseCaseRequest $useCaseRequest = null);
+    abstract public function withUseCaseRequest(?UseCaseRequest $useCaseRequest = null);
 
     /**
      * @return UseCaseEventBuilder
      * @codeCoverageIgnore
      */
-    abstract public function withUseCaseResponse(UseCaseResponse $useCaseResponse = null);
+    abstract public function withUseCaseResponse(?UseCaseResponse $useCaseResponse = null);
 
     /**
      * @return UseCaseEventBuilder
      * @codeCoverageIgnore
      */
-    abstract public function withUseCaseException(\Exception $exception = null);
+    abstract public function withUseCaseException(?\Exception $exception = null);
 
     /**
      * @return UseCaseEvent
